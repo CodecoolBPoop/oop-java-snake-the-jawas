@@ -1,28 +1,47 @@
 package com.codecool.snake;
 
 import com.codecool.snake.entities.enemies.SimpleEnemy;
-import com.codecool.snake.entities.powerups.HulkPowerup;
+import com.codecool.snake.entities.powerups.HealthPowerup;
 import com.codecool.snake.entities.powerups.SimplePowerup;
 import com.codecool.snake.entities.snakes.SnakeHead;
+import javafx.animation.*;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
+import javafx.util.Duration;
+
+import java.util.function.Consumer;
 
 public class Game extends Pane {
 
     public Game() {
         new SnakeHead(this, 500, 500);
 
-        new SimpleEnemy(this);
-        new SimpleEnemy(this);
-        new SimpleEnemy(this);
-        new SimpleEnemy(this);
+        addUnTimedSimpleEnemy(2);
+        addUnTimedSimplePowerup(4);
+        addTimedHealthPowerUp(10000);
 
-        new SimplePowerup(this);
-        new SimplePowerup(this);
-        new SimplePowerup(this);
-        new SimplePowerup(this);
+    }
 
-        new HulkPowerup(this);
+    // TODO: how to pass the creation of a new object as a return value?????
+    public void addTimedHealthPowerUp(int duration) {
+        Timeline timeline = new Timeline(
+                new KeyFrame(Duration.millis(duration),
+                        ae -> new HealthPowerup(this))
+        );
+        timeline.setCycleCount(Animation.INDEFINITE);
+        timeline.play();
+    }
+
+    public void addUnTimedSimpleEnemy(int numberOfObjects){
+        for (int i = 0; i < numberOfObjects; i++) {
+            new SimpleEnemy(this);
+        }
+    }
+
+    public void addUnTimedSimplePowerup(int numberOfObjects){
+        for (int i = 0; i < numberOfObjects; i++) {
+            new SimplePowerup(this);
+        }
     }
 
     public void start() {
