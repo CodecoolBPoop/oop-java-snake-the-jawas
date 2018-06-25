@@ -11,7 +11,7 @@ import java.util.Random;
 // a simple powerup that makes the snake grow TODO make other powerups
 public class HealthPowerup extends GameEntity implements Interactable {
 
-    private static final int extaHealth = 30;
+    private static final int extraHealth = 30;
 
     public HealthPowerup(Pane pane) {
         super(pane);
@@ -25,13 +25,14 @@ public class HealthPowerup extends GameEntity implements Interactable {
 
     @Override
     public void apply(SnakeHead player) {
-        player.changeHealth(extaHealth);
+        player.changeHealth(extraHealth);
         destroy();
     }
 
     @Override
     public String getMessage() {
-        return "Got 30 extra health points :)";
+        String message = "Got 30 extra health points :)" + "\n" + String.valueOf(Globals.snakeHealth);
+        return message;
     }
 
 }

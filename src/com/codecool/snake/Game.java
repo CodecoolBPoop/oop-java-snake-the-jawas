@@ -4,6 +4,7 @@ import com.codecool.snake.entities.enemies.SimpleEnemy;
 import com.codecool.snake.entities.powerups.HealthPowerup;
 import com.codecool.snake.entities.powerups.SimplePowerup;
 import com.codecool.snake.entities.snakes.SnakeHead;
+import com.codecool.snake.entities.text.GameText;
 import javafx.animation.*;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
@@ -20,6 +21,7 @@ public class Game extends Pane {
         addUnTimedSimplePowerup(4);
         addTimedHealthPowerUp(10000);
 
+        new GameText(this);
     }
 
     // TODO: how to pass the creation of a new object as a return value?????

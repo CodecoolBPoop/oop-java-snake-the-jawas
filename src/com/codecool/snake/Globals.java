@@ -2,6 +2,7 @@ package com.codecool.snake;
 
 import com.codecool.snake.entities.GameEntity;
 import javafx.scene.image.Image;
+import javafx.scene.text.Text;
 
 import java.util.Collections;
 import java.util.LinkedList;
@@ -21,6 +22,10 @@ public class Globals {
     //.. put here the other images you want to use
     public static Image powerupHealth = new Image("powerup_health.png");
 
+
+    public static Text healthText = new Text();
+
+    public static int snakeHealth;
 
     public static boolean leftKeyDown;
     public static boolean rightKeyDown;
