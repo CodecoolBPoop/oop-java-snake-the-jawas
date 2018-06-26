@@ -18,14 +18,18 @@ public class Globals {
     public static Image snakeBody = new Image("snake_body.png");
     public static Image healthDamage = new Image("enemy_health_damage.png");
     public static Image powerupBerry = new Image("powerup_berry.png");
+    public static Image powerupScore = new Image("powerup_score.png");
 
     //.. put here the other images you want to use
     public static Image powerupHealth = new Image("powerup_health.png");
 
-
-    public static Text healthText = new Text();
+    public static Text gameOver = new Text();
 
     public static int snakeHealth;
+    public static Text healthText = new Text();
+
+    public static int score;
+    public static Text scoreText = new Text();
 
     public static boolean leftKeyDown;
     public static boolean rightKeyDown;
@@ -45,8 +49,13 @@ public class Globals {
     }
 
     public static void removeGameObject(GameEntity toRemove) {
-        newGameObjects.remove(toRemove); // ati: added this line. seems logical...
         oldGameObjects.add(toRemove);
+    }
+
+    public static void removeAllGameObjects() {
+        gameObjects.clear();
+        newGameObjects.clear();
+        oldGameObjects.clear();
     }
 
     public static List<GameEntity> getGameObjects() {

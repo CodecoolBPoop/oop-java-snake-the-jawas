@@ -1,10 +1,12 @@
 package com.codecool.snake.entities.snakes;
 
+import com.codecool.snake.Game;
 import com.codecool.snake.entities.GameEntity;
 import com.codecool.snake.Globals;
 import com.codecool.snake.entities.Animatable;
 import com.codecool.snake.Utils;
 import com.codecool.snake.entities.Interactable;
+import com.codecool.snake.entities.powerups.HealthPowerup;
 import com.codecool.snake.entities.text.GameText;
 import javafx.geometry.Point2D;
 import javafx.scene.layout.Pane;
@@ -21,6 +23,7 @@ public class SnakeHead extends GameEntity implements Animatable {
         setX(xc);
         setY(yc);
         Globals.snakeHealth = 100;
+        Globals.score = 0;
         tail = this;
         setImage(Globals.snakeHead);
         pane.getChildren().add(this);
@@ -50,6 +53,7 @@ public class SnakeHead extends GameEntity implements Animatable {
                     interactable.apply(this);
                     System.out.println(interactable.getMessage());
                     GameText.updateHealthScoreDiplay();
+                    GameText.updateScore();
                 }
             }
         }
@@ -57,7 +61,11 @@ public class SnakeHead extends GameEntity implements Animatable {
         // check for game over condition
         if (isOutOfBounds() || Globals.snakeHealth <= 0) {
             System.out.println("Game Over");
+//            destroyAll(); // TODO: does not stop timed enemies plus removes gameoverMessage: Ask Kristóf
+            GameText.displayGameOver(Globals.score);
             Globals.gameLoop.stop();
+//            Globals.addGameObject(!!!!!!!!);
+
         }
     }
 
@@ -70,6 +78,10 @@ public class SnakeHead extends GameEntity implements Animatable {
 
     public void changeHealth(int diff) {
         Globals.snakeHealth += diff;
+    }
+
+    public void changeScore(int diff) {
+        Globals.score += diff;
     }
 
 }
