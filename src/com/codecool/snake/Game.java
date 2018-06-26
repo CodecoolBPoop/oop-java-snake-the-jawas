@@ -7,23 +7,27 @@ import com.codecool.snake.entities.snakes.SnakeHead;
 import com.codecool.snake.entities.text.GameText;
 import javafx.animation.*;
 import javafx.scene.Scene;
+import javafx.scene.input.KeyCode;
 import javafx.scene.layout.Pane;
 import javafx.util.Duration;
 
 public class Game extends Pane {
 
     public Game() {
-        new SnakeHead(this, 500, 500,1);
-        new SnakeHead(this, 400, 500,2);
+        makeObjects();
+
+        addTimedHealthDamage(1000);
+        addTimedHealthPowerUp(15000);
+    }
+    private void makeObjects(){
+        new SnakeHead(this, 500, 500);
+        new SnakeHead(this, 400, 500);
 
         addUnTimedHealthDamage(10);
-        addTimedHealthDamage(1000);
         addUnTimedExtraHealth(4);
-        addTimedHealthPowerUp(15000);
 
         new GameText(this);
     }
-
     // TODO: how to pass the creation of a new object as a return value?????
     public void addTimedHealthPowerUp(int duration) {
         Timeline timeline = new Timeline(
@@ -73,8 +77,19 @@ public class Game extends Pane {
                 case A:  Globals.aKeyDown  = false; break;
                 case D: Globals.dKeyDown  = false; break;
             }
+            if (event.getCode() == KeyCode.R) {
+                Globals.gameLoop.stop();
+                Globals.gameObjects.clear();
+                Globals.players.clear();
+                this.getChildren().clear();
+                makeObjects();
+                start();
+            }
         });
+
+
         Globals.gameLoop = new GameLoop();
         Globals.gameLoop.start();
+
     }
 }
