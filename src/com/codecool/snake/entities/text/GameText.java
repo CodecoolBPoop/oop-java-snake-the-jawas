@@ -2,7 +2,6 @@ package com.codecool.snake.entities.text;
 
 import com.codecool.snake.Globals;
 import com.codecool.snake.entities.GameEntity;
-import com.codecool.snake.entities.snakes.SnakeHead;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
@@ -19,4 +18,9 @@ public class GameText extends GameEntity {
         Globals.healthText.setY(0.05 * Globals.WINDOW_HEIGHT);
         pane.getChildren().add(Globals.healthText);
     }
+
+    public static void updateHealthScoreDiplay() {
+        Globals.healthText.setText("Health: " + String.valueOf(Globals.snakeHealth));
+    }
+
 }

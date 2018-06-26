@@ -17,7 +17,7 @@ public class Game extends Pane {
     public Game() {
         new SnakeHead(this, 500, 500);
 
-        addUnTimedSimpleEnemy(2);
+        addUnTimedSimpleEnemy(10);
         addUnTimedSimplePowerup(4);
         addTimedHealthPowerUp(10000);
 
