@@ -18,8 +18,9 @@ public class Game extends Pane {
         new SnakeHead(this, 500, 500);
 
         addUnTimedSimpleEnemy(10);
+        addTimedSimpleEnemy(1000);
         addUnTimedSimplePowerup(4);
-        addTimedHealthPowerUp(10000);
+        addTimedHealthPowerUp(15000);
 
         new GameText(this);
     }
@@ -29,6 +30,15 @@ public class Game extends Pane {
         Timeline timeline = new Timeline(
                 new KeyFrame(Duration.millis(duration),
                         ae -> new HealthPowerup(this))
+        );
+        timeline.setCycleCount(Animation.INDEFINITE);
+        timeline.play();
+    }
+
+    public void addTimedSimpleEnemy(int duration) {
+        Timeline timeline = new Timeline(
+                new KeyFrame(Duration.millis(duration),
+                        ae -> new SimpleEnemy(this))
         );
         timeline.setCycleCount(Animation.INDEFINITE);
         timeline.play();
