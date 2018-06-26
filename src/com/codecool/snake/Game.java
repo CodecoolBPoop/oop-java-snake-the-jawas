@@ -1,6 +1,6 @@
 package com.codecool.snake;
 
-import com.codecool.snake.entities.enemies.SimpleEnemy;
+import com.codecool.snake.entities.enemies.HealthDamage;
 import com.codecool.snake.entities.powerups.HealthPowerup;
 import com.codecool.snake.entities.powerups.SimplePowerup;
 import com.codecool.snake.entities.snakes.SnakeHead;
@@ -10,16 +10,14 @@ import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.util.Duration;
 
-import java.util.function.Consumer;
-
 public class Game extends Pane {
 
     public Game() {
         new SnakeHead(this, 500, 500);
 
-        addUnTimedSimpleEnemy(10);
-        addTimedSimpleEnemy(1000);
-        addUnTimedSimplePowerup(4);
+        addUnTimedHealthDamage(10);
+        addTimedHealthDamage(1000);
+        addUnTimedExtraHealth(4);
         addTimedHealthPowerUp(15000);
 
         new GameText(this);
@@ -35,24 +33,24 @@ public class Game extends Pane {
         timeline.play();
     }
 
-    public void addTimedSimpleEnemy(int duration) {
+    public void addTimedHealthDamage(int duration) {
         Timeline timeline = new Timeline(
                 new KeyFrame(Duration.millis(duration),
-                        ae -> new SimpleEnemy(this))
+                        ae -> new HealthDamage(this))
         );
         timeline.setCycleCount(Animation.INDEFINITE);
         timeline.play();
     }
 
-    public void addUnTimedSimpleEnemy(int numberOfObjects){
+    public void addUnTimedHealthDamage(int numberOfObjects){
         for (int i = 0; i < numberOfObjects; i++) {
-            new SimpleEnemy(this);
+            new HealthDamage(this);
         }
     }
 
-    public void addUnTimedSimplePowerup(int numberOfObjects){
+    public void addUnTimedExtraHealth(int numberOfObjects){
         for (int i = 0; i < numberOfObjects; i++) {
-            new SimplePowerup(this);
+            new HealthPowerup(this);
         }
     }
 
