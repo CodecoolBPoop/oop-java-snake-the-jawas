@@ -12,15 +12,15 @@ import javafx.scene.layout.Pane;
 import java.util.Random;
 
 // a simple enemy TODO make better ones.
-public class SimpleEnemy extends GameEntity implements Animatable, Interactable {
+public class HealthDamage extends GameEntity implements Animatable, Interactable {
 
     private Point2D heading;
     private static final int damage = 10;
 
-    public SimpleEnemy(Pane pane) {
+    public HealthDamage(Pane pane) {
         super(pane);
 
-        setImage(Globals.simpleEnemy);
+        setImage(Globals.healthDamage);
         pane.getChildren().add(this);
         int speed = 1;
         Random rnd = new Random();
