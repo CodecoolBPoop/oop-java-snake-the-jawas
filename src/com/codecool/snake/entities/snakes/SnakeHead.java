@@ -15,13 +15,15 @@ public class SnakeHead extends GameEntity implements Animatable {
     private static final float turnRate = 2;
     private GameEntity tail; // the last element. Needed to know where to add the next part.
 //    private int health;
+    private int player;
 
-    public SnakeHead(Pane pane, int xc, int yc) {
+    public SnakeHead(Pane pane, int xc, int yc, int player) {
         super(pane);
         setX(xc);
         setY(yc);
         Globals.snakeHealth = 100;
         tail = this;
+        this.player = player;
         setImage(Globals.snakeHead);
         pane.getChildren().add(this);
 
@@ -30,11 +32,22 @@ public class SnakeHead extends GameEntity implements Animatable {
 
     public void step() {
         double dir = getRotate();
-        if (Globals.leftKeyDown) {
-            dir = dir - turnRate;
+        if(player==1){
+            if (Globals.leftKeyDown)
+                dir = dir - turnRate;
+
+            if (Globals.rightKeyDown)
+                dir = dir + turnRate;
         }
-        if (Globals.rightKeyDown) {
-            dir = dir + turnRate;
+
+        if(player==2){
+
+            if (Globals.aKeyDown)
+                dir = dir - turnRate;
+
+            if (Globals.dKeyDown)
+                dir = dir + turnRate;
+
         }
         // set rotation and position
         setRotate(dir);
