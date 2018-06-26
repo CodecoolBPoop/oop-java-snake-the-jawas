@@ -9,24 +9,28 @@ import com.codecool.snake.entities.text.GameText;
 import javafx.geometry.Point2D;
 import javafx.scene.layout.Pane;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class SnakeHead extends GameEntity implements Animatable {
 
     private static final float speed = 2;
     private static final float turnRate = 2;
     private GameEntity tail; // the last element. Needed to know where to add the next part.
 //    private int health;
+    private static List players = new ArrayList();
     private int player;
 
-    public SnakeHead(Pane pane, int xc, int yc, int player) {
+    public SnakeHead(Pane pane, int xc, int yc) {
         super(pane);
         setX(xc);
         setY(yc);
         Globals.snakeHealth = 100;
         tail = this;
-        this.player = player;
         setImage(Globals.snakeHead);
         pane.getChildren().add(this);
-
+        player = players.size()+1;
+        players.add(this);
         addPart(4);
     }
 
