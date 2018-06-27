@@ -68,11 +68,27 @@ public class SnakeHead extends GameEntity implements Animatable {
                     GameText.updateHealthScoreDiplay();
                 }
 
+
                 if(entity instanceof SnakeHead) {
                     SnakeHead head = (SnakeHead) entity;
                    if(head.player != this.player){
+                        head.removeBody();
+                        this.removeBody();
+
+                        head.destroy();
+                        this.destroy();
                         System.out.println("Game Over");
                         Globals.gameLoop.stop();
+                    }
+                }
+
+
+                if(entity instanceof SnakeBody) {
+                    SnakeBody head = (SnakeBody) entity;
+
+                    if(head.getHead() != this) {
+                        removeBody();
+                        this.destroy();
                     }
                 }
             }
@@ -85,9 +101,20 @@ public class SnakeHead extends GameEntity implements Animatable {
         }
     }
 
+    public void removeBody() {
+        for (GameEntity entity : Globals.getGameObjects()) {
+            if(entity instanceof SnakeBody) {
+                SnakeBody body = (SnakeBody) entity;
+                if(body.getHead() == this){
+                    body.destroy();
+                }
+            }
+        }
+    }
+
     public void addPart(int numParts) {
         for (int i = 0; i < numParts; i++) {
-            SnakeBody newPart = new SnakeBody(pane, tail);
+            SnakeBody newPart = new SnakeBody(pane, tail, this);
             tail = newPart;
         }
     }
