@@ -1,8 +1,10 @@
 package com.codecool.snake;
 
 import com.codecool.snake.entities.GameEntity;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.image.Image;
 import javafx.scene.text.Text;
+import javafx.stage.Screen;
 
 import java.util.Collections;
 import java.util.LinkedList;
@@ -10,9 +12,9 @@ import java.util.List;
 
 // class for holding all static stuff
 public class Globals {
-
-    public static final double WINDOW_WIDTH = 1000;
-    public static final double WINDOW_HEIGHT = 700;
+    private static Rectangle2D primaryScreenBounds = Screen.getPrimary().getVisualBounds();
+    public static final double WINDOW_WIDTH = primaryScreenBounds.getWidth();
+    public static final double WINDOW_HEIGHT = primaryScreenBounds.getHeight();
 
     public static Image snakeHead = new Image("snake_head.png");
     public static Image snakeBody = new Image("snake_body.png");
