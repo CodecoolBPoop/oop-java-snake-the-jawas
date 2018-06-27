@@ -4,6 +4,7 @@ import com.codecool.snake.entities.GameEntity;
 import javafx.scene.image.Image;
 import javafx.scene.text.Text;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
@@ -31,6 +32,7 @@ public class Globals {
     public static boolean rightKeyDown;
     public static boolean aKeyDown;
     public static boolean dKeyDown;
+    public static List players = new ArrayList();
     public static List<GameEntity> gameObjects;
     public static List<GameEntity> newGameObjects; // Holds game objects crated in this frame.
     public static List<GameEntity> oldGameObjects; // Holds game objects that will be destroyed this frame.
