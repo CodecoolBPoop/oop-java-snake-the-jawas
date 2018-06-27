@@ -4,24 +4,28 @@ import com.codecool.snake.entities.GameEntity;
 import com.codecool.snake.Globals;
 import com.codecool.snake.entities.Interactable;
 import com.codecool.snake.entities.snakes.SnakeHead;
+import javafx.animation.Animation;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.scene.image.Image;
 import javafx.scene.layout.Pane;
+import javafx.util.Duration;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
+public class ScoreUp extends GameEntity implements Interactable {
 
-public class HealthPowerup extends GameEntity implements Interactable {
+    private static final int scoreUp =50;
 
-    private static final int extraHealth = 30;
-
-    public HealthPowerup(Pane pane) {
+    public ScoreUp(Pane pane) {
         super(pane);
 
-        thisGoesIntoGameEntityConstructor(Globals.powerupHealth);
+        thisGoesIntoGameEntityConstructor(Globals.powerupScore);
         timedRemoveEntity(5000);
     }
 
-    // TODO: MOVE THIS TO GAME ENTITY, AND INSERT IMAGE PARAMETER INTO ENTITY SUBCLASS'S CONSTRUCTORS
     public void thisGoesIntoGameEntityConstructor(Image gameObjectImage){
         setImage(gameObjectImage);
         pane.getChildren().add(this);
@@ -31,16 +35,15 @@ public class HealthPowerup extends GameEntity implements Interactable {
         setY(rnd.nextDouble() * Globals.WINDOW_HEIGHT);
     }
 
+
     @Override
-    public void apply(SnakeHead player) {
-        player.changeHealth(extraHealth);
+    public void apply(SnakeHead snakeHead) {
+        snakeHead.changeScore(scoreUp);
         destroy();
     }
 
     @Override
     public String getMessage() {
-        String message = "Got 30 extra health points :)" + "\n" + String.valueOf(Globals.snakeHealth1);
-        return message;
+        return "Got power-up :)";
     }
-
 }
