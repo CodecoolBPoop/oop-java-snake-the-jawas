@@ -26,7 +26,7 @@ public class TeleporterEnemy extends GameEntity implements Animatable, Interacta
 
     @Override
     public void step() {
-        if (!teleported){
+        if (!teleported && !Globals.isGameOver){
             teleported = true;
             Timeline timeline = new Timeline(new KeyFrame(
                     Duration.millis(5000),
@@ -36,14 +36,16 @@ public class TeleporterEnemy extends GameEntity implements Animatable, Interacta
     }
 
     public void teleport(){
-        Random rnd = new Random();
-        setX(rnd.nextDouble()* Globals.WINDOW_WIDTH);
-        setY(rnd.nextDouble()* Globals.WINDOW_HEIGHT);
-        setImage(Globals.teleportedEnemy);
-        Timeline timeline = new Timeline(new KeyFrame(
-                Duration.millis(5000),
-                ae -> destroy()));
-        timeline.play();
+        if (!Globals.isGameOver){
+            Random rnd = new Random();
+            setX(rnd.nextDouble()* Globals.WINDOW_WIDTH);
+            setY(rnd.nextDouble()* Globals.WINDOW_HEIGHT);
+            setImage(Globals.teleportedEnemy);
+            Timeline timeline = new Timeline(new KeyFrame(
+                    Duration.millis(5000),
+                    ae -> destroy()));
+            timeline.play();
+        }
     }
     @Override
     public void apply(SnakeHead player) {

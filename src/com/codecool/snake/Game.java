@@ -11,8 +11,8 @@ public class Game extends Pane {
 
     public Game() {
         makeObjects();
-        SpawnIntaractable spawnIntaractable = new SpawnIntaractable();
-        spawnIntaractable.spawnLoop(this);
+//        SpawnIntaractable spawnIntaractable = new SpawnIntaractable();
+        Globals.spawnIntaractable.spawnLoop(this);
     }
     private void makeObjects(){
         new SnakeHead(this, 500, 500);
@@ -45,6 +45,7 @@ public class Game extends Pane {
                 Globals.players.clear();
                 this.getChildren().clear();
                 makeObjects();
+                Globals.isGameOver = false;
                 start();
             }
         });

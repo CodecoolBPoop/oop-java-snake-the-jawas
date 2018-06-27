@@ -1,6 +1,7 @@
 package com.codecool.snake;
 
 import com.codecool.snake.entities.GameEntity;
+import com.codecool.snake.entities.SpawnIntaractable;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.image.Image;
 import javafx.scene.text.Text;
@@ -30,6 +31,7 @@ public class Globals {
     public static Image powerupHealth = new Image("powerup_health.png");
 
     public static Text gameOver = new Text();
+    public static boolean isGameOver = false;
 
     public static int snakeHealth;
     public static Text healthText = new Text();
@@ -45,6 +47,7 @@ public class Globals {
     public static List<GameEntity> gameObjects;
     public static List<GameEntity> newGameObjects; // Holds game objects crated in this frame.
     public static List<GameEntity> oldGameObjects; // Holds game objects that will be destroyed this frame.
+    public static SpawnIntaractable spawnIntaractable = new SpawnIntaractable();
     public static GameLoop gameLoop;
 
     static {
