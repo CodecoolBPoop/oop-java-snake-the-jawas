@@ -11,33 +11,22 @@ import javafx.scene.text.Text;
 
 public class GameText extends GameEntity {
 
-    //TODO: CLEAN CODE THIS
     public GameText(Pane pane) {
         super(pane);
-        setHealthText(pane);
-        setScore(pane);
+        setText(pane, "Health: ", Globals.snakeHealth, Globals.healthText, 0.8, 0.05, Color.GREEN, 20);
+        setText(pane, "Score: ", Globals.score, Globals.scoreText, 0.01, 0.05, Color.ORANGERED, 20);
 
         Globals.gameOver.setText("");
         pane.getChildren().add(Globals.gameOver);
     }
 
-    public static void displayGameOver(int score) {
-        String gameOverMessage = String.format("Game over\nYour score is %d points", score); // score should come here
-        Globals.gameOver.setText(gameOverMessage);
-        Globals.gameOver.setFont(Font.font ("Verdana", FontWeight.EXTRA_BOLD, 30));
-        Globals.gameOver.setFill(Color.INDIANRED);
-        Globals.gameOver.setX(0.2 * Globals.WINDOW_WIDTH);
-        Globals.gameOver.setY(0.5 * Globals.WINDOW_HEIGHT);
-    }
-
-    public static void setHealthText(Pane pane) {
-        Globals.healthText.setText("Health: " + String.valueOf(Globals.snakeHealth));
-        Globals.healthText.setFont(Font.font ("Verdana", FontWeight.EXTRA_BOLD, 20));
-        Globals.healthText.setFill(Color.GREEN);
-        Globals.healthText.setX(0.8 * Globals.WINDOW_WIDTH);
-        Globals.healthText.setY(0.05 * Globals.WINDOW_HEIGHT);
-        pane.getChildren().add(Globals.healthText);
-
+    public static void setText(Pane pane, String title, int scoreValue, Text textToSet, double xCoordinate, double yCoordinate, Color textColor, int fontSize) {
+        textToSet.setText(title + String.valueOf(scoreValue));
+        textToSet.setFont(Font.font ("Verdana", FontWeight.EXTRA_BOLD, fontSize));
+        textToSet.setFill(textColor);
+        textToSet.setX(xCoordinate * Globals.WINDOW_WIDTH);
+        textToSet.setY(yCoordinate * Globals.WINDOW_HEIGHT);
+        pane.getChildren().add(textToSet);
     }
 
     public static void updateHealthScoreDiplay() {
@@ -45,17 +34,7 @@ public class GameText extends GameEntity {
         updateColorOfText();
     }
 
-    public static void setScore(Pane pane) {
-        Globals.scoreText.setText("Score: " + String.valueOf(Globals.score));
-        Globals.scoreText.setFont(Font.font ("Verdana", FontWeight.EXTRA_BOLD, 20));
-        Globals.scoreText.setFill(Color.ORANGERED);
-        Globals.scoreText.setX(0.01 * Globals.WINDOW_WIDTH);
-        Globals.scoreText.setY(0.05 * Globals.WINDOW_HEIGHT);
-        pane.getChildren().add(Globals.scoreText);
-
-    }
-
-    public static void updateScore() {
+    public static void updateScoreDisplay() {
         Globals.scoreText.setText("Score: " + String.valueOf(Globals.score));
     }
 
@@ -74,6 +53,15 @@ public class GameText extends GameEntity {
         } else if (10 > Globals.snakeHealth && Globals.snakeHealth >= 0) {
             Globals.healthText.setFill(Color.BLACK);
         }
+    }
+
+    public static void displayGameOver(int score) {
+        String gameOverMessage = String.format("Game over\nYour score is %d points", score); // score should come here
+        Globals.gameOver.setText(gameOverMessage);
+        Globals.gameOver.setFont(Font.font ("Verdana", FontWeight.EXTRA_BOLD, 30));
+        Globals.gameOver.setFill(Color.INDIANRED);
+        Globals.gameOver.setX(0.2 * Globals.WINDOW_WIDTH);
+        Globals.gameOver.setY(0.5 * Globals.WINDOW_HEIGHT);
     }
 
     public String getMessage() {

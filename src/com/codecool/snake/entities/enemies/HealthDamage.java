@@ -7,11 +7,12 @@ import com.codecool.snake.Utils;
 import com.codecool.snake.entities.Interactable;
 import com.codecool.snake.entities.snakes.SnakeHead;
 import javafx.geometry.Point2D;
+import javafx.scene.image.Image;
 import javafx.scene.layout.Pane;
 
 import java.util.Random;
 
-// a simple enemy TODO make better ones.
+
 public class HealthDamage extends GameEntity implements Animatable, Interactable {
 
     private Point2D heading;
@@ -20,13 +21,23 @@ public class HealthDamage extends GameEntity implements Animatable, Interactable
     public HealthDamage(Pane pane) {
         super(pane);
 
-        setImage(Globals.healthDamage);
+        thisGoesIntoGameEntityConstructor(Globals.healthDamage);
+        entitySpicificConstructorSettings();
+
+    }
+
+    public void thisGoesIntoGameEntityConstructor(Image gameObjectImage){
+        setImage(gameObjectImage);
         pane.getChildren().add(this);
-        int speed = 1;
+
         Random rnd = new Random();
         setX(rnd.nextDouble() * Globals.WINDOW_WIDTH);
         setY(rnd.nextDouble() * Globals.WINDOW_HEIGHT);
+    }
 
+    public void entitySpicificConstructorSettings(){
+        int speed = 1;
+        Random rnd = new Random();
         double direction = rnd.nextDouble() * 360;
         setRotate(direction);
         heading = Utils.directionToVector(direction, speed);
