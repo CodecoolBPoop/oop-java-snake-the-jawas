@@ -11,13 +11,12 @@ public class Game extends Pane {
 
     public Game() {
         makeObjects();
+        SpawnIntaractable spawnIntaractable = new SpawnIntaractable();
+        spawnIntaractable.spawnLoop(this);
     }
     private void makeObjects(){
         new SnakeHead(this, 500, 500);
         new SnakeHead(this, 400, 500);
-
-        SpawnIntaractable spawnIntaractable = new SpawnIntaractable();
-        spawnIntaractable.spawnLoop(this);
         new GameText(this);
     }
 
