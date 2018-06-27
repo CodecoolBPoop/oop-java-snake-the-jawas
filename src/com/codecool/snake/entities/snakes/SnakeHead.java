@@ -29,6 +29,7 @@ public class SnakeHead extends GameEntity implements Animatable {
     }
 
     public void step() {
+
         double dir = getRotate();
         if (Globals.leftKeyDown) {
             dir = dir - turnRate;
@@ -72,4 +73,10 @@ public class SnakeHead extends GameEntity implements Animatable {
         Globals.snakeHealth += diff;
     }
 
+    public Double getXCordinat(){
+        return getX();
+    }
+    public Double getYCordinat(){
+        return getY();
+    }
 }

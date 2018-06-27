@@ -16,8 +16,10 @@ public class Globals {
 
     public static Image snakeHead = new Image("snake_head.png");
     public static Image snakeBody = new Image("snake_body.png");
-    public static Image healthDamage = new Image("enemy_health_damage.png");
+    public static Image followerEnemy = new Image("first_enemy.png");
+    public static Image teleporterEnemy = new Image("second_enemy.png");
     public static Image powerupBerry = new Image("powerup_berry.png");
+    public static Image teleportedEnemy = new Image("teleported_enemy.png");
 
     //.. put here the other images you want to use
     public static Image powerupHealth = new Image("powerup_health.png");

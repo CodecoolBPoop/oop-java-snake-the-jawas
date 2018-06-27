@@ -7,38 +7,56 @@ import com.codecool.snake.Utils;
 import com.codecool.snake.entities.Interactable;
 import com.codecool.snake.entities.snakes.SnakeHead;
 import javafx.geometry.Point2D;
+import javafx.scene.Node;
 import javafx.scene.layout.Pane;
 
 import java.util.Random;
 
 // a simple enemy TODO make better ones.
-public class HealthDamage extends GameEntity implements Animatable, Interactable {
+public class FollowerEnemy extends GameEntity implements Animatable, Interactable {
+    int speed;
 
     private Point2D heading;
     private static final int damage = 10;
 
-    public HealthDamage(Pane pane) {
+    public FollowerEnemy(Pane pane) {
         super(pane);
-
-        setImage(Globals.healthDamage);
+        setImage(Globals.followerEnemy);
         pane.getChildren().add(this);
-        int speed = 1;
+        speed = 1;
         Random rnd = new Random();
         setX(rnd.nextDouble() * Globals.WINDOW_WIDTH);
         setY(rnd.nextDouble() * Globals.WINDOW_HEIGHT);
 
-        double direction = rnd.nextDouble() * 360;
-        setRotate(direction);
-        heading = Utils.directionToVector(direction, speed);
+        //TODO calculate angel
+//        double direction = rnd.nextDouble() * 360;
+//        setRotate(direction);
+//        heading = Utils.directionToVector(direction, speed);
     }
 
     @Override
     public void step() {
+        double snakeXCordinat = 0;
+        double snakeYCordinat = 0;
         if (isOutOfBounds()) {
             destroy();
         }
-        setX(getX() + heading.getX());
-        setY(getY() + heading.getY());
+        for (Node node:pane.getChildren()) {
+            if(node instanceof SnakeHead){
+                snakeXCordinat =((SnakeHead) node).getXCordinat();
+                snakeYCordinat = ((SnakeHead) node).getYCordinat();
+            }
+        }
+        if(snakeXCordinat>getX()){
+            setX(getX() + speed);
+        }else if(snakeXCordinat<getX()){
+            setX(getX() - speed);
+        }else {}
+        if(snakeYCordinat>getY()){
+            setY(getY() + speed);
+        }else if(snakeYCordinat<getY()){
+            setY(getY() - speed);
+        }else {}
     }
 
     @Override
