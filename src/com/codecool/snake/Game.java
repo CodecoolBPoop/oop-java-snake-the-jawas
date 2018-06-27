@@ -13,8 +13,8 @@ import javafx.util.Duration;
 public class Game extends Pane {
 
     public Game() {
-        new SnakeHead(this, 500, 500,1);
-        new SnakeHead(this, 400, 500,2);
+        new SnakeHead(this, 500, 500);
+        new SnakeHead(this, 400, 500);
 
         addUnTimedHealthDamage(10);
         addTimedHealthDamage(1000);

@@ -18,7 +18,7 @@ public class SnakeHead extends GameEntity implements Animatable {
     private static final float turnRate = 2;
     private GameEntity tail; // the last element. Needed to know where to add the next part.
 //    private int health;
-    private static List players = new ArrayList();
+    public static List players = new ArrayList();
     private int player;
 
     public SnakeHead(Pane pane, int xc, int yc) {
@@ -67,6 +67,14 @@ public class SnakeHead extends GameEntity implements Animatable {
                     interactable.apply(this);
                     System.out.println(interactable.getMessage());
                     GameText.updateHealthScoreDiplay();
+                }
+
+                if(entity instanceof SnakeHead) {
+                    SnakeHead head = (SnakeHead) entity;
+                   if(head.player != this.player){
+                        System.out.println("Game Over");
+                        Globals.gameLoop.stop();
+                    }
                 }
             }
         }
