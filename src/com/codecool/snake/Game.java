@@ -16,37 +16,6 @@ public class Game extends Pane {
         new GameText(this);
     }
 
-    // TODO: how to pass the creation of a new object as a return value?????
-//    public void addTimedHealthPowerUp(int duration) {
-//        Timeline timeline = new Timeline(
-//                new KeyFrame(Duration.millis(duration),
-//                        ae -> new HealthPowerup(this))
-//        );
-//        timeline.setCycleCount(Animation.INDEFINITE);
-//        timeline.play();
-//    }
-//
-//    public void addTimedHealthDamage(int duration) {
-//        Timeline timeline = new Timeline(
-//                new KeyFrame(Duration.millis(duration),
-//                        ae -> new FollowerEnemy(this))
-//        );
-//        timeline.setCycleCount(Animation.INDEFINITE);
-//        timeline.play();
-//    }
-//
-//    public void addUnTimedHealthDamage(int numberOfObjects){
-//        for (int i = 0; i < numberOfObjects; i++) {
-//            new FollowerEnemy(this);
-//        }
-//    }
-//
-//    public void addUnTimedExtraHealth(int numberOfObjects){
-//        for (int i = 0; i < numberOfObjects; i++) {
-//            new HealthPowerup(this);
-//        }
-//    }
-
     public void start() {
         Scene scene = getScene();
         scene.setOnKeyPressed(event -> {
