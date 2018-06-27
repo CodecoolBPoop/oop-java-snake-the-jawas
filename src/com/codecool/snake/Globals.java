@@ -26,7 +26,8 @@ public class Globals {
 
     public static Text healthText = new Text();
 
-    public static int snakeHealth;
+    public static int snakeHealth1;
+    public static int snakeHealth2;
 
     public static boolean leftKeyDown;
     public static boolean rightKeyDown;

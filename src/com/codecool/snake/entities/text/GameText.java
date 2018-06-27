@@ -12,7 +12,7 @@ public class GameText extends GameEntity {
 
     public GameText(Pane pane) {
         super(pane);
-        Globals.healthText.setText("Health: " + String.valueOf(Globals.snakeHealth));
+        Globals.healthText.setText("Health: " + String.valueOf(Globals.snakeHealth1));
         Globals.healthText.setFont(Font.font ("Verdana", FontWeight.EXTRA_BOLD, 20));
         Globals.healthText.setFill(Color.GREEN);
         Globals.healthText.setX(0.8 * Globals.WINDOW_WIDTH);
@@ -20,23 +20,23 @@ public class GameText extends GameEntity {
         pane.getChildren().add(Globals.healthText);
     }
 
-    public static void updateHealthScoreDiplay() {
-        Globals.healthText.setText("Health: " + String.valueOf(Globals.snakeHealth));
+    public static void updateHealthScoreDisplay() {
+        Globals.healthText.setText("Health: " + String.valueOf(Globals.snakeHealth1));
         updateColorOfText();
     }
 
     public static void updateColorOfText() {
-        if (Globals.snakeHealth >= 90) {
+        if (Globals.snakeHealth1 >= 90) {
             Globals.healthText.setFill(Color.GREEN);
-        } else if (90 > Globals.snakeHealth && Globals.snakeHealth >= 70) {
+        } else if (90 > Globals.snakeHealth1 && Globals.snakeHealth1 >= 70) {
             Globals.healthText.setFill(Color.LIGHTGREEN);
-        } else if (70 > Globals.snakeHealth && Globals.snakeHealth >= 50) {
+        } else if (70 > Globals.snakeHealth1 && Globals.snakeHealth1 >= 50) {
             Globals.healthText.setFill(Color.ORANGE);
-        } else if (50 > Globals.snakeHealth && Globals.snakeHealth >= 30) {
+        } else if (50 > Globals.snakeHealth1 && Globals.snakeHealth1 >= 30) {
             Globals.healthText.setFill(Color.ORANGERED);
-        } else if (30 > Globals.snakeHealth && Globals.snakeHealth >= 10) {
+        } else if (30 > Globals.snakeHealth1 && Globals.snakeHealth1 >= 10) {
             Globals.healthText.setFill(Color.DARKRED);
-        } else if (10 > Globals.snakeHealth && Globals.snakeHealth >= 0) {
+        } else if (10 > Globals.snakeHealth1 && Globals.snakeHealth1 >= 0) {
             Globals.healthText.setFill(Color.BLACK);
         }
 
