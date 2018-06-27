@@ -14,6 +14,7 @@ import java.util.Random;
 
 
 public class HealthDamage extends GameEntity implements Animatable, Interactable {
+    int speed;
 
     private Point2D heading;
     private static final int damage = 10;
@@ -36,7 +37,7 @@ public class HealthDamage extends GameEntity implements Animatable, Interactable
     }
 
     public void entitySpicificConstructorSettings(){
-        int speed = 1;
+        speed = 1;
         Random rnd = new Random();
         double direction = rnd.nextDouble() * 360;
         setRotate(direction);
