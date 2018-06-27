@@ -14,51 +14,76 @@ import java.util.Random;
 public class FollowerEnemy extends GameEntity implements Animatable, Interactable {
 
     int speed;
-    Random rnd;
+    Random rnd = new Random();
+    int target = 0;
+
 
     private Point2D heading;
     private static final int damage = 10;
 
     public FollowerEnemy(Pane pane) {
         super(pane);
-
-        setImage(Globals.followerEnemy);
-        pane.getChildren().add(this);
         entitySpicificConstructorSettings();
-        timedRemoveEntity(10000);
     }
         //TODO calculate angel
 
     public void entitySpicificConstructorSettings() {
         speed = 1;
-        rnd = new Random();
-        setX(rnd.nextDouble() * Globals.WINDOW_WIDTH);
-        setY(rnd.nextDouble() * Globals.WINDOW_HEIGHT);
+        canSpawn();
+        target = rnd.nextInt(2);
+        setImage(Globals.followerEnemy);
+        pane.getChildren().add(this);
+        entitySpicificConstructorSettings();
+        timedRemoveEntity(10000);
     }
 
     @Override
     public void step() {
         double snakeXCordinat = 0;
         double snakeYCordinat = 0;
+        double snake2XCordinat = 0;
+        double snake2YCordinat = 0;
         if (isOutOfBounds()) {
             destroy();
         }
         for (Node node:pane.getChildren()) {
+            boolean secondSneak=false;
             if(node instanceof SnakeHead){
+                if (!secondSneak){
                 snakeXCordinat =((SnakeHead) node).getXCordinat();
                 snakeYCordinat = ((SnakeHead) node).getYCordinat();
+            }else {
+                    snake2XCordinat = ((SnakeHead) node).getXCordinat();
+                    snake2YCordinat = ((SnakeHead) node).getYCordinat();
+                }
             }
         }
-        if(snakeXCordinat>getX()){
+        if(target == 0) {
+            if (snakeXCordinat > getX()) {
+                setX(getX() + speed);
+            } else if (snakeXCordinat < getX()) {
+                setX(getX() - speed);
+            } else {
+            }
+            if (snakeYCordinat > getY()) {
+                setY(getY() + speed);
+            } else if (snakeYCordinat < getY()) {
+                setY(getY() - speed);
+            } else {
+            }
+        }else if (snake2XCordinat > 0)
+        if (snake2XCordinat > getX()) {
             setX(getX() + speed);
-        }else if(snakeXCordinat<getX()){
+        } else if (snake2XCordinat < getX()) {
             setX(getX() - speed);
-        }else {}
-        if(snakeYCordinat>getY()){
+        } else {
+        }
+        if (snake2YCordinat > getY()) {
             setY(getY() + speed);
-        }else if(snakeYCordinat<getY()){
+        } else if (snake2YCordinat < getY()) {
             setY(getY() - speed);
-        }else {}
+        } else {
+        }
     }
 
     @Override

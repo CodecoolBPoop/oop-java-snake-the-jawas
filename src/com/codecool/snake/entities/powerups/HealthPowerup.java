@@ -17,19 +17,10 @@ public class HealthPowerup extends GameEntity implements Interactable {
     public HealthPowerup(Pane pane) {
         super(pane);
 
-        thisGoesIntoGameEntityConstructor(Globals.powerupHealth);
+        stillEntityConstructor(Globals.powerupHealth);
         timedRemoveEntity(5000);
     }
 
-    // TODO: MOVE THIS TO GAME ENTITY, AND INSERT IMAGE PARAMETER INTO ENTITY SUBCLASS'S CONSTRUCTORS
-    public void thisGoesIntoGameEntityConstructor(Image gameObjectImage){
-        setImage(gameObjectImage);
-        pane.getChildren().add(this);
-
-        Random rnd = new Random();
-        setX(rnd.nextDouble() * Globals.WINDOW_WIDTH);
-        setY(rnd.nextDouble() * Globals.WINDOW_HEIGHT);
-    }
 
     @Override
     public void apply(SnakeHead player) {

@@ -22,18 +22,11 @@ public class ScoreUp extends GameEntity implements Interactable {
     public ScoreUp(Pane pane) {
         super(pane);
 
-        thisGoesIntoGameEntityConstructor(Globals.powerupScore);
+        stillEntityConstructor(Globals.powerupScore);
         timedRemoveEntity(5000);
+
     }
 
-    public void thisGoesIntoGameEntityConstructor(Image gameObjectImage){
-        setImage(gameObjectImage);
-        pane.getChildren().add(this);
-
-        Random rnd = new Random();
-        setX(rnd.nextDouble() * Globals.WINDOW_WIDTH);
-        setY(rnd.nextDouble() * Globals.WINDOW_HEIGHT);
-    }
 
 
     @Override

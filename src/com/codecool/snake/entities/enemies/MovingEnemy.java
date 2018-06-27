@@ -25,11 +25,15 @@ public class MovingEnemy extends GameEntity implements Animatable, Interactable 
     }
 
     public void entitySpicificConstructorSettings(){
-        speed = 1;
+        speed = 2;
+        setImage(Globals.movingEnemy);
+        canSpawn();
+        pane.getChildren().add(this);
         Random rnd = new Random();
         double direction = rnd.nextDouble() * 360;
         setRotate(direction);
         heading = Utils.directionToVector(direction, speed);
+        canSpawn();
     }
 
     @Override
