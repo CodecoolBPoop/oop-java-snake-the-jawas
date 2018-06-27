@@ -13,12 +13,10 @@ import com.codecool.snake.sound.Sound;
 import javafx.geometry.Point2D;
 import javafx.scene.layout.Pane;
 
-import java.util.concurrent.TimeUnit;
-
 public class SnakeHead extends GameEntity implements Animatable {
 
-    private static final float speed = 2;
-    private static final float turnRate = 2;
+//    private static float speed = 2;
+//    private static float turnRate = 2;
     private GameEntity tail; // the last element. Needed to know where to add the next part.
     //    private int health;
     private int snakeID;
@@ -31,10 +29,14 @@ public class SnakeHead extends GameEntity implements Animatable {
             case 1:
                 Globals.snakeHealth1 = 100;
                 Globals.score1 = 0;
+                Globals.speed1 = 2;
+                Globals.turnRate1 = 2;
                 break;
             case 2:
                 Globals.snakeHealth2 = 100;
                 Globals.score2 = 0;
+                Globals.speed2 = 2;
+                Globals.turnRate2 = 2;
                 break;
             default:break;
         }
@@ -51,26 +53,37 @@ public class SnakeHead extends GameEntity implements Animatable {
         double dir = getRotate();
         if (snakeID == 1) {
             if (Globals.leftKeyDown)
-                dir = dir - turnRate;
+                dir = dir - Globals.turnRate1;
 
             if (Globals.rightKeyDown)
-                dir = dir + turnRate;
+                dir = dir + Globals.turnRate1;
+
+            Point2D heading = Utils.directionToVector(dir, Globals.speed1);
+            setX(getX() + heading.getX());
+            setY(getY() + heading.getY());
+
         }
 
         if (snakeID == 2) {
 
-            if (Globals.aKeyDown)
-                dir = dir - turnRate;
+            if (Globals.aKeyDown) {
+                dir = dir - Globals.turnRate2;
+            }
 
-            if (Globals.dKeyDown)
-                dir = dir + turnRate;
+            if (Globals.dKeyDown) {
+                dir = dir + Globals.turnRate2;
+            }
+
+            Point2D heading = Utils.directionToVector(dir, Globals.speed2);
+            setX(getX() + heading.getX());
+            setY(getY() + heading.getY());
 
         }
         // set rotation and position
         setRotate(dir);
-        Point2D heading = Utils.directionToVector(dir, speed);
-        setX(getX() + heading.getX());
-        setY(getY() + heading.getY());
+//        Point2D heading = Utils.directionToVector(dir, speed);
+//        setX(getX() + heading.getX());
+//        setY(getY() + heading.getY());
 
         // check if collided with an enemy or a powerup
         for (GameEntity entity : Globals.getGameObjects()) {
@@ -156,6 +169,31 @@ public class SnakeHead extends GameEntity implements Animatable {
             Globals.snakeHealth2 += diff;
         }
     }
+
+    public void speedup(float speed) {
+        if (this.getSnakeID() == 1) {
+            Globals.speed1 *= speed;
+            Globals.turnRate1 *= speed;
+        } else if (this.getSnakeID() == 2) {
+            Globals.speed2 *= speed;
+            Globals.turnRate2 *= speed;
+        } else {
+            System.out.println("speedup error");
+        }
+    }
+
+    public void slowDown(float speed) {
+        if (this.getSnakeID() == 1) {
+            Globals.speed1 /= speed;
+            Globals.turnRate1 /= speed;
+        } else if (this.getSnakeID() == 2) {
+            Globals.speed2 /= speed;
+            Globals.turnRate2 /= speed;
+        } else {
+            System.out.println("slowdown error");
+        }
+    }
+
 
     public int getSnakeID() {
         return snakeID;

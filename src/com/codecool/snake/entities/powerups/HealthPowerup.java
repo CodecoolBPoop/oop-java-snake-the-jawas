@@ -17,7 +17,7 @@ public class HealthPowerup extends GameEntity implements Interactable {
     public HealthPowerup(Pane pane) {
         super(pane);
 
-        thisGoesIntoGameEntityConstructor(Globals.powerupHealth);
+        stillEntityConstructor(Globals.powerupHealth);
         timedRemoveEntity(5000);
     }
 
