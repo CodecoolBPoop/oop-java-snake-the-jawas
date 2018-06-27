@@ -18,7 +18,6 @@ public class SnakeHead extends GameEntity implements Animatable {
     private static final float turnRate = 2;
     private GameEntity tail; // the last element. Needed to know where to add the next part.
 //    private int health;
-    private static List players = new ArrayList();
     private int player;
 
     public SnakeHead(Pane pane, int xc, int yc) {
@@ -29,8 +28,8 @@ public class SnakeHead extends GameEntity implements Animatable {
         tail = this;
         setImage(Globals.snakeHead);
         pane.getChildren().add(this);
-        player = players.size()+1;
-        players.add(this);
+        player = Globals.players.size()+1;
+        Globals.players.add(this);
         addPart(4);
     }
 
@@ -68,6 +67,30 @@ public class SnakeHead extends GameEntity implements Animatable {
                     System.out.println(interactable.getMessage());
                     GameText.updateHealthScoreDiplay();
                 }
+
+
+                if(entity instanceof SnakeHead) {
+                    SnakeHead head = (SnakeHead) entity;
+                   if(head.player != this.player){
+                        head.removeBody();
+                        this.removeBody();
+
+                        head.destroy();
+                        this.destroy();
+                        System.out.println("Game Over");
+                        Globals.gameLoop.stop();
+                    }
+                }
+
+
+                if(entity instanceof SnakeBody) {
+                    SnakeBody head = (SnakeBody) entity;
+
+                    if(head.getHead() != this) {
+                        removeBody();
+                        this.destroy();
+                    }
+                }
             }
         }
 
@@ -78,9 +101,20 @@ public class SnakeHead extends GameEntity implements Animatable {
         }
     }
 
+    public void removeBody() {
+        for (GameEntity entity : Globals.getGameObjects()) {
+            if(entity instanceof SnakeBody) {
+                SnakeBody body = (SnakeBody) entity;
+                if(body.getHead() == this){
+                    body.destroy();
+                }
+            }
+        }
+    }
+
     public void addPart(int numParts) {
         for (int i = 0; i < numParts; i++) {
-            SnakeBody newPart = new SnakeBody(pane, tail);
+            SnakeBody newPart = new SnakeBody(pane, tail, this);
             tail = newPart;
         }
     }
