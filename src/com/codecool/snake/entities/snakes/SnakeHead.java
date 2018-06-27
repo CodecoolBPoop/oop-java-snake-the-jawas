@@ -86,7 +86,7 @@ public class SnakeHead extends GameEntity implements Animatable {
                         head.destroy();
                         this.destroy();
                         System.out.println("Game Over");
-                        GameText.displayGameOver(Globals.score1); // Extra Game over line added
+                        GameText.displayGameOver(this.snakeID); // Extra Game over line added
                         Globals.gameLoop.stop();
                         Globals.isGameOver = true;
                     }
@@ -107,7 +107,7 @@ public class SnakeHead extends GameEntity implements Animatable {
         // check for game over condition
         if (isOutOfBounds() || Globals.snakeHealth1 <=0 || Globals.snakeHealth2 <= 0) {
             System.out.println("Game Over");
-            GameText.displayGameOver(Globals.score1); // Extra Game over line added
+            GameText.displayGameOver(this.snakeID); // Extra Game over line added
             Globals.gameLoop.stop();
             Globals.isGameOver = true;
         }

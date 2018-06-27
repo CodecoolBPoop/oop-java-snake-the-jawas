@@ -64,8 +64,20 @@ public class GameText extends GameEntity {
         }
     }
 
-    public static void displayGameOver(int score) {
-        String gameOverMessage = String.format("Game over\nYour score1 is %d points", score); // score1 should come here
+    public static void displayGameOver(int snakeID) {
+        int score;
+        String winner;
+        if (snakeID == 1) {
+            score = Globals.score2;
+            winner = "Player 2";
+        } else if (snakeID == 2) {
+            score = Globals.score1;
+            winner = "Player 1";
+        } else {
+            score = 100000000;
+            winner = "1000000000";
+        }
+        String gameOverMessage = String.format("Game over\n%s won\nWinner\'s score is %d points", winner, score); // score1 should come here
         Globals.gameOver.setText(gameOverMessage);
         Globals.gameOver.setFont(Font.font ("Verdana", FontWeight.EXTRA_BOLD, 30));
         Globals.gameOver.setFill(Color.INDIANRED);
