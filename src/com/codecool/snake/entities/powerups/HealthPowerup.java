@@ -39,7 +39,7 @@ public class HealthPowerup extends GameEntity implements Interactable {
 
     @Override
     public String getMessage() {
-        String message = "Got 30 extra health points :)" + "\n" + String.valueOf(Globals.snakeHealth);
+        String message = "Got 30 extra health points :)" + "\n" + String.valueOf(Globals.snakeHealth1);
         return message;
     }
 

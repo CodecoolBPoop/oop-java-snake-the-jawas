@@ -33,11 +33,15 @@ public class Globals {
     public static Text gameOver = new Text();
     public static boolean isGameOver = false;
 
-    public static int snakeHealth;
-    public static Text healthText = new Text();
+    public static int snakeHealth1;
+    public static int snakeHealth2;
+    public static Text healthText1 = new Text();
+    public static Text healthText2 = new Text();
 
-    public static int score;
-    public static Text scoreText = new Text();
+    public static int score1;
+    public static int score2;
+    public static Text scoreText1 = new Text();
+    public static Text scoreText2 = new Text();
 
     public static boolean leftKeyDown;
     public static boolean rightKeyDown;

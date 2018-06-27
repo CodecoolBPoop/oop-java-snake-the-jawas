@@ -15,9 +15,10 @@ public class Game extends Pane {
         Globals.spawnIntaractable.spawnLoop(this);
     }
     private void makeObjects(){
-        new SnakeHead(this, 500, 500);
-        new SnakeHead(this, 400, 500);
-        new GameText(this);
+        new SnakeHead(this, 500, 500, 1);
+        new SnakeHead(this, 400, 500, 2);
+        new GameText(this, 1);
+        new GameText(this, 2);
     }
 
 
