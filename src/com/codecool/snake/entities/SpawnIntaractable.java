@@ -1,9 +1,10 @@
 package com.codecool.snake.entities;
 import java.util.concurrent.ThreadLocalRandom;
-
 import com.codecool.snake.entities.enemies.FollowerEnemy;
 import com.codecool.snake.entities.enemies.TeleporterEnemy;
 import com.codecool.snake.entities.powerups.HealthPowerup;
+import com.codecool.snake.entities.powerups.ScoreUp;
+import com.codecool.snake.entities.powerups.SimplePowerup;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -31,6 +32,8 @@ public class SpawnIntaractable {
             case 1: new FollowerEnemy(game);break;
             case 2: new TeleporterEnemy(game);break;
             case 3: new HealthPowerup(game);break;
+            case 4: new ScoreUp(game);break;
+            case 5: new SimplePowerup(game);break;
         }
     }
 }

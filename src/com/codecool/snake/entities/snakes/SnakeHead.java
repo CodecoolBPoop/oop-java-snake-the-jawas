@@ -21,6 +21,7 @@ public class SnakeHead extends GameEntity implements Animatable {
         setX(xc);
         setY(yc);
         Globals.snakeHealth = 100;
+        Globals.score = 0;
         tail = this;
         setImage(Globals.snakeHead);
         pane.getChildren().add(this);
@@ -50,7 +51,6 @@ public class SnakeHead extends GameEntity implements Animatable {
                     Interactable interactable = (Interactable) entity;
                     interactable.apply(this);
                     System.out.println(interactable.getMessage());
-                    GameText.updateHealthScoreDiplay();
                 }
             }
         }
@@ -58,7 +58,9 @@ public class SnakeHead extends GameEntity implements Animatable {
         // check for game over condition
         if (isOutOfBounds() || Globals.snakeHealth <= 0) {
             System.out.println("Game Over");
+            GameText.displayGameOver(Globals.score); // Extra Game over line added
             Globals.gameLoop.stop();
+
         }
     }
 
@@ -76,7 +78,12 @@ public class SnakeHead extends GameEntity implements Animatable {
     public Double getXCordinat(){
         return getX();
     }
+
     public Double getYCordinat(){
         return getY();
+    }
+
+    public void changeScore(int diff) {
+        Globals.score += diff;
     }
 }

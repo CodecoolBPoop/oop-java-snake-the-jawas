@@ -8,12 +8,14 @@ import com.codecool.snake.entities.Interactable;
 import com.codecool.snake.entities.snakes.SnakeHead;
 import javafx.geometry.Point2D;
 import javafx.scene.Node;
+import javafx.scene.image.Image;
 import javafx.scene.layout.Pane;
 
 import java.util.Random;
 
 // a simple enemy TODO make better ones.
 public class FollowerEnemy extends GameEntity implements Animatable, Interactable {
+
     int speed;
 
     private Point2D heading;
@@ -21,17 +23,25 @@ public class FollowerEnemy extends GameEntity implements Animatable, Interactabl
 
     public FollowerEnemy(Pane pane) {
         super(pane);
+
         setImage(Globals.followerEnemy);
         pane.getChildren().add(this);
         speed = 1;
+
         Random rnd = new Random();
         setX(rnd.nextDouble() * Globals.WINDOW_WIDTH);
         setY(rnd.nextDouble() * Globals.WINDOW_HEIGHT);
-
+    }
         //TODO calculate angel
 //        double direction = rnd.nextDouble() * 360;
 //        setRotate(direction);
 //        heading = Utils.directionToVector(direction, speed);
+    public void entitySpicificConstructorSettings(){
+        speed = 1;
+        Random rnd = new Random();
+        double direction = rnd.nextDouble() * 360;
+        setRotate(direction);
+        heading = Utils.directionToVector(direction, speed);
     }
 
     @Override

@@ -1,8 +1,12 @@
 package com.codecool.snake.entities;
 
+import com.codecool.snake.Game;
 import com.codecool.snake.Globals;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
+import javafx.util.Duration;
 
 // The base class for every game entity.
 public abstract class GameEntity extends ImageView {
@@ -29,4 +33,12 @@ public abstract class GameEntity extends ImageView {
         }
         return false;
     }
+
+    public void timedRemoveEntity(int after) {
+        Timeline timeline = new Timeline(new KeyFrame(
+                Duration.millis(after),
+                ae -> destroy()));
+        timeline.play();
+    }
+
 }
