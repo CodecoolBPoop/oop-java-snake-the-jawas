@@ -5,9 +5,15 @@ import com.codecool.snake.Globals;
 import com.codecool.snake.entities.Animatable;
 import com.codecool.snake.Utils;
 import com.codecool.snake.entities.Interactable;
+import com.codecool.snake.entities.enemies.FollowerEnemy;
+import com.codecool.snake.entities.enemies.MovingEnemy;
+import com.codecool.snake.entities.enemies.TeleporterEnemy;
 import com.codecool.snake.entities.text.GameText;
+import com.codecool.snake.sound.Sound;
 import javafx.geometry.Point2D;
 import javafx.scene.layout.Pane;
+
+import java.util.concurrent.TimeUnit;
 
 public class SnakeHead extends GameEntity implements Animatable {
 
@@ -73,7 +79,10 @@ public class SnakeHead extends GameEntity implements Animatable {
                     Interactable interactable = (Interactable) entity;
                     interactable.apply(this);
                     System.out.println(interactable.getMessage());
-//                    GameText.updateHealthScoreDisplay();
+                }
+
+                if (entity instanceof FollowerEnemy || entity instanceof MovingEnemy || entity instanceof TeleporterEnemy) {
+                    Sound.playSound("resources/sound/scream_female.wav");
                 }
 
 
@@ -103,6 +112,8 @@ public class SnakeHead extends GameEntity implements Animatable {
                         GameText.displayGameOver(this.snakeID, false);
                         Globals.gameLoop.stop();
                         Globals.isGameOver = true;
+                        Sound.stopMusic();
+                        Sound.startMusic("resources/sound/PowerBotsLoop.wav");
 
                     }
                 }
@@ -115,6 +126,8 @@ public class SnakeHead extends GameEntity implements Animatable {
             GameText.displayGameOver(this.snakeID, false); // Extra Game over line added
             Globals.gameLoop.stop();
             Globals.isGameOver = true;
+            Sound.stopMusic();
+            Sound.startMusic("resources/sound/PowerBotsLoop.wav");
         }
     }
 
