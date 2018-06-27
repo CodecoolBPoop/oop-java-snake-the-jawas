@@ -1,5 +1,9 @@
 package com.codecool.snake.sound;
 
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
+import javafx.util.Duration;
+
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
@@ -44,5 +48,12 @@ public class Sound {
             System.out.println("Error with playing sound.");
             ex.printStackTrace();
         }
+    }
+
+    public static void startMusicWithDelay(String pathname, int after) {
+        Timeline timeline = new Timeline(new KeyFrame(
+                Duration.millis(after),
+                ae -> startMusic(pathname)));
+        timeline.play();
     }
 }
