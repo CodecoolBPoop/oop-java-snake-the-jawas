@@ -3,20 +3,18 @@ package com.codecool.snake.entities.enemies;
 import com.codecool.snake.entities.GameEntity;
 import com.codecool.snake.Globals;
 import com.codecool.snake.entities.Animatable;
-import com.codecool.snake.Utils;
 import com.codecool.snake.entities.Interactable;
 import com.codecool.snake.entities.snakes.SnakeHead;
 import javafx.geometry.Point2D;
 import javafx.scene.Node;
-import javafx.scene.image.Image;
 import javafx.scene.layout.Pane;
-
 import java.util.Random;
 
 // a simple enemy TODO make better ones.
 public class FollowerEnemy extends GameEntity implements Animatable, Interactable {
 
     int speed;
+    Random rnd;
 
     private Point2D heading;
     private static final int damage = 10;
@@ -26,22 +24,16 @@ public class FollowerEnemy extends GameEntity implements Animatable, Interactabl
 
         setImage(Globals.followerEnemy);
         pane.getChildren().add(this);
-        speed = 1;
-
-        Random rnd = new Random();
-        setX(rnd.nextDouble() * Globals.WINDOW_WIDTH);
-        setY(rnd.nextDouble() * Globals.WINDOW_HEIGHT);
+        entitySpicificConstructorSettings();
+        timedRemoveEntity(10000);
     }
         //TODO calculate angel
-//        double direction = rnd.nextDouble() * 360;
-//        setRotate(direction);
-//        heading = Utils.directionToVector(direction, speed);
-    public void entitySpicificConstructorSettings(){
+
+    public void entitySpicificConstructorSettings() {
         speed = 1;
-        Random rnd = new Random();
-        double direction = rnd.nextDouble() * 360;
-        setRotate(direction);
-        heading = Utils.directionToVector(direction, speed);
+        rnd = new Random();
+        setX(rnd.nextDouble() * Globals.WINDOW_WIDTH);
+        setY(rnd.nextDouble() * Globals.WINDOW_HEIGHT);
     }
 
     @Override

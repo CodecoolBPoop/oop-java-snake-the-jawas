@@ -14,21 +14,9 @@ public class SimplePowerup extends GameEntity implements Interactable {
 
     public SimplePowerup(Pane pane) {
         super(pane);
-        thisGoesIntoGameEntityConstructor(Globals.powerupBerry);
+        stillEntityConstructor(Globals.powerupBerry);
         timedRemoveEntity(10000);
     }
-
-    public void thisGoesIntoGameEntityConstructor(Image gameObjectImage){
-        setImage(gameObjectImage);
-        pane.getChildren().add(this);
-
-        Random rnd = new Random();
-        setX(rnd.nextDouble() * Globals.WINDOW_WIDTH);
-        setY(rnd.nextDouble() * Globals.WINDOW_HEIGHT);
-
-    }
-
-
 
     @Override
     public void apply(SnakeHead snakeHead) {

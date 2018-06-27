@@ -17,36 +17,21 @@ import java.util.Random;
 public class TeleporterEnemy extends GameEntity implements Animatable, Interactable{
 
     boolean teleported = false;
-    private Point2D heading;
     private static final int damage = 30;
 
     public TeleporterEnemy(Pane pane) {
         super(pane);
-
-        setImage(Globals.teleporterEnemy);
-        pane.getChildren().add(this);
-//        int speed = 1;
-        Random rnd = new Random();
-        setX(rnd.nextDouble() * Globals.WINDOW_WIDTH);
-        setY(rnd.nextDouble() * Globals.WINDOW_HEIGHT);
-
-//        double direction = rnd.nextDouble() * 360;
-//        setRotate(direction);
-//        heading = Utils.directionToVector(direction, speed);
+        stillEntityConstructor(Globals.teleporterEnemy);
     }
 
     @Override
     public void step() {
-//        if (isOutOfBounds()) {
-//            destroy();
-//        }
         if (!teleported){
             teleported = true;
             Timeline timeline = new Timeline(new KeyFrame(
                     Duration.millis(5000),
                     ae -> teleport()));
             timeline.play();
-
         }
     }
 
