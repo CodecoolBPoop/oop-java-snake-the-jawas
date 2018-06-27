@@ -64,8 +64,37 @@ public class GameText extends GameEntity {
         }
     }
 
-    public static void displayGameOver(int score) {
-        String gameOverMessage = String.format("Game over\nYour score1 is %d points", score); // score1 should come here
+    public static void displayGameOver(int snakeID, boolean draw) {
+        int score;
+        String winner;
+        String fullMessage;
+        if (snakeID == 1) {
+            score = Globals.score2;
+            winner = "Player 2";
+            fullMessage = String.format("Game over\n%s won\nWinner\'s score is %d points", winner, score);
+        } else if (snakeID == 2) {
+            score = Globals.score1;
+            winner = "Player 1";
+            fullMessage = String.format("Game over\n%s won\nWinner\'s score is %d points", winner, score);
+        } else {
+            score = 100000000;
+            winner = "1000000000";
+            fullMessage = "Fuck this shit!";
+        }
+        if (draw) {
+            if (Globals.score1 > Globals.score2) {
+                winner = "Player 1";
+                score = Globals.score1;
+                fullMessage = String.format("Game over\n%s won with higher score\nWinner\'s score is %d points", winner, score);
+            } else if (Globals.score1 < Globals.score2) {
+                winner = "Player 2";
+                score = Globals.score2;
+                fullMessage = String.format("Game over\n%s won with higher score\nWinner\'s score is %d points", winner, score);
+            } else {
+                fullMessage = String.format("Game over\nIt's a draw\nBoth players\'s score is %d points", score);
+            }
+        }
+        String gameOverMessage = String.format(fullMessage);
         Globals.gameOver.setText(gameOverMessage);
         Globals.gameOver.setFont(Font.font ("Verdana", FontWeight.EXTRA_BOLD, 30));
         Globals.gameOver.setFill(Color.INDIANRED);
