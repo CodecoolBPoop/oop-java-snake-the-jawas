@@ -31,10 +31,12 @@ public abstract class GameEntity extends ImageView {
     }
 
     public void destroy() {
-        if (getParent() != null) {
-            pane.getChildren().remove(this);
+        if (!Globals.isGameOver) {
+            if (getParent() != null) {
+                pane.getChildren().remove(this);
+            }
+            Globals.removeGameObject(this);
         }
-        Globals.removeGameObject(this);
     }
 
     protected boolean isOutOfBounds() {

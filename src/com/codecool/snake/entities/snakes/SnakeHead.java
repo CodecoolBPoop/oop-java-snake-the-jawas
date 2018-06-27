@@ -5,6 +5,7 @@ import com.codecool.snake.Globals;
 import com.codecool.snake.entities.Animatable;
 import com.codecool.snake.Utils;
 import com.codecool.snake.entities.Interactable;
+import com.codecool.snake.entities.SpawnIntaractable;
 import com.codecool.snake.entities.text.GameText;
 import javafx.geometry.Point2D;
 import javafx.scene.layout.Pane;
@@ -79,7 +80,9 @@ public class SnakeHead extends GameEntity implements Animatable {
                         head.destroy();
                         this.destroy();
                         System.out.println("Game Over");
+                        GameText.displayGameOver(Globals.score); // Extra Game over line added
                         Globals.gameLoop.stop();
+                        Globals.isGameOver = true;
                     }
                 }
 
@@ -100,7 +103,7 @@ public class SnakeHead extends GameEntity implements Animatable {
             System.out.println("Game Over");
             GameText.displayGameOver(Globals.score); // Extra Game over line added
             Globals.gameLoop.stop();
-
+            Globals.isGameOver = true;
         }
     }
 

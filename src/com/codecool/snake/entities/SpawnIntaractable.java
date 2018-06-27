@@ -1,5 +1,7 @@
 package com.codecool.snake.entities;
 import java.util.concurrent.ThreadLocalRandom;
+
+import com.codecool.snake.Globals;
 import com.codecool.snake.entities.enemies.FollowerEnemy;
 import com.codecool.snake.entities.enemies.MovingEnemy;
 import com.codecool.snake.entities.enemies.TeleporterEnemy;
@@ -14,20 +16,21 @@ import javafx.util.Duration;
 
 
 public class SpawnIntaractable {
+
     int random;
-
-    public SpawnIntaractable(){}
-
 
     public void spawnLoop(Pane thisGame){
         Timeline timeline = new Timeline(new KeyFrame(
                 Duration.millis(1000),
-                ae -> this.Spawn(thisGame)));
+                ae -> this.spawn(thisGame)));
         timeline.setCycleCount(Animation.INDEFINITE);
         timeline.play();
     }
 
-    private void Spawn(Pane game){
+    private void spawn(Pane game){
+        if (Globals.isGameOver) {
+            return;
+        }
         random = ThreadLocalRandom.current().nextInt(1,11);
         switch (random){
             case 1: new FollowerEnemy(game);break;
@@ -36,6 +39,7 @@ public class SpawnIntaractable {
             case 4: new ScoreUp(game);break;
             case 5: new SimplePowerup(game);break;
             case 6: new MovingEnemy(game);break;
+            case 7: default:break;
         }
     }
 }
