@@ -1,63 +1,26 @@
 package com.codecool.snake;
 
-import com.codecool.snake.entities.enemies.HealthDamage;
-import com.codecool.snake.entities.powerups.HealthPowerup;
-import com.codecool.snake.entities.powerups.SimplePowerup;
+import com.codecool.snake.entities.SpawnIntaractable;
 import com.codecool.snake.entities.snakes.SnakeHead;
 import com.codecool.snake.entities.text.GameText;
-import javafx.animation.*;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.Pane;
-import javafx.util.Duration;
 
 public class Game extends Pane {
 
     public Game() {
         makeObjects();
-
-        addTimedHealthDamage(1000);
-        addTimedHealthPowerUp(15000);
     }
     private void makeObjects(){
         new SnakeHead(this, 500, 500);
         new SnakeHead(this, 400, 500);
 
-        addUnTimedHealthDamage(10);
-        addUnTimedExtraHealth(4);
-
+        SpawnIntaractable spawnIntaractable = new SpawnIntaractable();
+        spawnIntaractable.spawnLoop(this);
         new GameText(this);
     }
-    // TODO: how to pass the creation of a new object as a return value?????
-    public void addTimedHealthPowerUp(int duration) {
-        Timeline timeline = new Timeline(
-                new KeyFrame(Duration.millis(duration),
-                        ae -> new HealthPowerup(this))
-        );
-        timeline.setCycleCount(Animation.INDEFINITE);
-        timeline.play();
-    }
 
-    public void addTimedHealthDamage(int duration) {
-        Timeline timeline = new Timeline(
-                new KeyFrame(Duration.millis(duration),
-                        ae -> new HealthDamage(this))
-        );
-        timeline.setCycleCount(Animation.INDEFINITE);
-        timeline.play();
-    }
-
-    public void addUnTimedHealthDamage(int numberOfObjects){
-        for (int i = 0; i < numberOfObjects; i++) {
-            new HealthDamage(this);
-        }
-    }
-
-    public void addUnTimedExtraHealth(int numberOfObjects){
-        for (int i = 0; i < numberOfObjects; i++) {
-            new HealthPowerup(this);
-        }
-    }
 
     public void start() {
         Scene scene = getScene();
