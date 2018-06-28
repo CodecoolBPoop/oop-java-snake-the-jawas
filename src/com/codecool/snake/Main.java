@@ -29,7 +29,6 @@ public class Main extends Application {
         primaryStage.setScene(new Scene(game, primaryScreenBounds.getWidth(), primaryScreenBounds.getHeight()));
 
 
-
         game.start();
     }
 

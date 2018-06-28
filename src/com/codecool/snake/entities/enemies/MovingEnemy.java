@@ -27,11 +27,11 @@ public class MovingEnemy extends GameEntity implements Animatable, Interactable 
         entitySpicificConstructorSettings();
     }
 
-    public void entitySpicificConstructorSettings(){
+    public void entitySpicificConstructorSettings() {
         spawnNumber++;
-        if (spawnNumber == buffLimit){
+        if (spawnNumber == buffLimit) {
             System.out.println("moving Buffed");
-            buffLimit = buffLimit +10;
+            buffLimit = buffLimit + 10;
         }
         speed = 2 + buff;
         setImage(Globals.movingEnemy);
