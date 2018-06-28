@@ -4,20 +4,28 @@ import com.codecool.snake.entities.snakes.SnakeHead;
 import com.codecool.snake.text.GameText;
 import com.codecool.snake.sound.Sound;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.Pane;
+import javafx.event.EventHandler;
+import javafx.event.ActionEvent;
 
 public class Game extends Pane {
 
     public Game() {
-        makeObjects();
+        createButton("Player1",100,100, gameMode, this);
+        createButton("Player2",150,100, gameMode, this);
         Globals.spawnIntaractable.spawnLoop(this);
     }
     private void makeObjects(){
         new SnakeHead(this, 500, 500, 1);
-        new SnakeHead(this, 400, 500, 2);
         new GameText(this, 1);
-        new GameText(this, 2);
+
+        if(Globals.multiPlayer) {
+            new SnakeHead(this, 400, 500, 2);
+            new GameText(this, 2);
+        }
+
     }
 
 
@@ -56,4 +64,29 @@ public class Game extends Pane {
         Globals.gameLoop.start();
 
     }
+
+    public void createButton(String name, int x, int y, EventHandler<ActionEvent> event, Pane pane) {
+        Button btn = new Button(name) ;
+        btn.setLayoutX(x);
+        btn.setLayoutY(y);
+        btn.setOnAction(event);
+        pane.getChildren().add(btn);
+
+    }
+
+    private EventHandler<ActionEvent> gameMode = e -> {
+       if(e.getTarget().toString().contains("Player1")){
+           Globals.multiPlayer = false;
+       } else {
+           Globals.multiPlayer = true;
+       }
+
+       this.getChildren().clear();
+
+
+       Globals.isGameOver = false;
+        makeObjects();
+
+    };
+
 }

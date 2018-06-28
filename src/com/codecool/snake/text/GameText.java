@@ -68,7 +68,11 @@ public class GameText extends GameEntity {
         int score;
         String winner;
         String fullMessage;
-        if (snakeID == 1) {
+
+        if(!Globals.multiPlayer) {
+            fullMessage = String.format("Game over\n your score is %d points", Globals.score1);
+        }
+        else if (snakeID == 1) {
             score = Globals.score2;
             winner = "Player 2";
             fullMessage = String.format("Game over\n%s won\nWinner\'s score is %d points", winner, score);
@@ -79,7 +83,7 @@ public class GameText extends GameEntity {
         } else {
             score = 100000000;
             winner = "1000000000";
-            fullMessage = "Fuck this shit!";
+            fullMessage = "Snake score 3 bug!";
         }
         if (draw) {
             if (Globals.score1 > Globals.score2) {
@@ -91,7 +95,7 @@ public class GameText extends GameEntity {
                 score = Globals.score2;
                 fullMessage = String.format("Game over\n%s won with higher score\nWinner\'s score is %d points", winner, score);
             } else {
-                fullMessage = String.format("Game over\nIt's a draw\nBoth players\'s score is %d points", score);
+                fullMessage = String.format("Game over\nIt's a draw\nBoth players\'s score is %d points");
             }
         }
         String gameOverMessage = String.format(fullMessage);
