@@ -104,9 +104,9 @@ public class SnakeHead extends GameEntity implements Animatable {
 
 
                 if (entity instanceof SnakeBody) {
-                    SnakeBody head = (SnakeBody) entity;
+                    SnakeBody body = (SnakeBody) entity;
 
-                    if (head.getHead() != this) {
+                    if (body.getHead() != this || !body.ShouldIDestroyMyself()) {
                         removeBody();
                         this.destroy();
                         System.out.println("Game Over");
@@ -129,7 +129,7 @@ public class SnakeHead extends GameEntity implements Animatable {
         }
     }
 
-    public void removeBody() {
+    private void removeBody() {
         for (GameEntity entity : Globals.getGameObjects()) {
             if (entity instanceof SnakeBody) {
                 SnakeBody body = (SnakeBody) entity;
@@ -179,16 +179,19 @@ public class SnakeHead extends GameEntity implements Animatable {
         }
     }
 
+    public GameEntity getTail() {
+        return tail;
+    }
 
     public int getSnakeID() {
         return snakeID;
     }
 
-    public Double getXCordinat(){
+    public Double getXCoordinate(){
         return getX();
     }
 
-    public Double getYCordinat(){
+    public Double getYCoordinate(){
         return getY();
     }
 
