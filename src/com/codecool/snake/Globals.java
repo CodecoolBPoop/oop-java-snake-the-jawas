@@ -20,6 +20,8 @@ public class Globals {
 
     public static Image snakeHead = new Image("snake_head.png");
     public static Image snakeBody = new Image("snake_body.png");
+    public static Image snakeHead2 = new Image("snake_head2.png");
+    public static Image snakeBody2 = new Image("snake_body2.png");
     public static Image followerEnemy = new Image("follow_enemy.png");
     public static Image teleporterEnemy = new Image("teleporter_enemy.png");
     public static Image powerupBerry = new Image("powerup_berry.png");
