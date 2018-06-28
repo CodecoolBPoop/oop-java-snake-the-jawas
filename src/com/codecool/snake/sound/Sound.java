@@ -56,4 +56,9 @@ public class Sound {
                 ae -> startMusic(pathname)));
         timeline.play();
     }
+
+    public static void startEndingMusic(String pathName) {
+        Sound.stopMusic();
+        Sound.startMusic(pathName);
+    }
 }
