@@ -30,7 +30,7 @@ public class Globals {
     public static Image powerupSpeed = new Image("powerup_speed.png");
 
     public static Text gameOver = new Text();
-    public static boolean isGameOver = false;
+    public static boolean isGameOver = true;
 
     public static int snakeHealth1;
     public static int snakeHealth2;
@@ -47,6 +47,8 @@ public class Globals {
     public static int score2;
     public static Text scoreText1 = new Text();
     public static Text scoreText2 = new Text();
+
+    public static boolean multiPlayer;
 
     public static boolean leftKeyDown;
     public static boolean rightKeyDown;

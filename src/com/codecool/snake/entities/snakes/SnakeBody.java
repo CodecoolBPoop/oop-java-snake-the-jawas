@@ -17,7 +17,7 @@ public class SnakeBody extends GameEntity implements Animatable {
     private Queue<Vec2d> history = new LinkedList<>();
     private static final int historySize = 10;
     private GameEntity head;
-    private boolean shouldDestroyMyself = false;
+    private boolean shouldDestroyMyself = true;
 
     public SnakeBody(Pane pane, GameEntity parent, GameEntity head) {
         super(pane);
@@ -29,7 +29,7 @@ public class SnakeBody extends GameEntity implements Animatable {
         List<Node> children = pane.getChildren();
         children.add(children.indexOf(parent), this);
 
-        if (children.size()<11){this.shouldDestroyMyself = true;}
+        if (children.size()<14){this.shouldDestroyMyself = false;}//If you die at the start increment the condition, msg Kristof on Discord if you don't understand this
         double xc = parent.getX();
         double yc = parent.getY();
         setX(xc);
