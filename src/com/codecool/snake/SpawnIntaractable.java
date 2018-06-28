@@ -36,7 +36,7 @@ public class SpawnIntaractable {
         random = ThreadLocalRandom.current().nextInt(1, 61);
         if (random <= 10) {
             new MovingEnemy(game);
-        } else if (9 < random && random <= 15) {
+        } else if (10 < random && random <= 15) {
             new FollowerEnemy(game);
         } else if (15 < random && random <= 20) {
             new TeleporterEnemy(game);
