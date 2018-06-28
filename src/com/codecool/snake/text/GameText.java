@@ -105,7 +105,8 @@ public class GameText extends GameEntity {
                 score = Globals.score2;
                 fullMessage = String.format("Game over\n%s won with higher score: %d points", winner, score);
             } else {
-                fullMessage = String.format("Game over\nIt's a draw\nBoth players\'s score is %d points");
+                score = Globals.score2;
+                fullMessage = String.format("Game over\nIt's a draw\nBoth players\'s score is %d points", score);
             }
         }
         String gameOverMessage = String.format(fullMessage);
