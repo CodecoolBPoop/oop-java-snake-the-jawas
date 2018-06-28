@@ -9,7 +9,7 @@ import javafx.scene.layout.Pane;
 
 public class ScoreUp extends GameEntity implements Interactable {
 
-    private static final int scoreUp =50;
+    private static final int scoreUp = 50;
 
     public ScoreUp(Pane pane) {
         super(pane);

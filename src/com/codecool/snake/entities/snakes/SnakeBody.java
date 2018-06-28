@@ -22,9 +22,9 @@ public class SnakeBody extends GameEntity implements Animatable {
     public SnakeBody(Pane pane, GameEntity parent, SnakeHead head) {
         super(pane);
         this.parent = parent;
-        if (head.getSnakeID() == 1){
+        if (head.getSnakeID() == 1) {
             setImage(Globals.snakeBody);
-        }else {
+        } else {
             setImage(Globals.snakeBody2);
         }
         this.head = head;
@@ -33,7 +33,9 @@ public class SnakeBody extends GameEntity implements Animatable {
         List<Node> children = pane.getChildren();
         children.add(children.indexOf(parent), this);
 
-        if (children.size()<14){this.shouldDestroyMyself = false;}//If you die at the start increment the condition, msg Kristof on Discord if you don't understand this
+        if (children.size() < 14) {
+            this.shouldDestroyMyself = false;
+        }//If you die at the start increment the condition, msg Kristof on Discord if you don't understand this
         double xc = parent.getX();
         double yc = parent.getY();
         setX(xc);

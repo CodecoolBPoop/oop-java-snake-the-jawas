@@ -14,8 +14,9 @@ import javafx.scene.layout.Pane;
 import javafx.util.Duration;
 
 import java.util.Random;
+
 // a simple enemy TODO make better ones.
-public class TeleporterEnemy extends GameEntity implements Animatable, Interactable{
+public class TeleporterEnemy extends GameEntity implements Animatable, Interactable {
 
     boolean teleported = false;
     private static final int damage = 30;
@@ -27,7 +28,7 @@ public class TeleporterEnemy extends GameEntity implements Animatable, Interacta
 
     @Override
     public void step() {
-        if (!teleported && !Globals.isGameOver){
+        if (!teleported && !Globals.isGameOver) {
             teleported = true;
             Timeline timeline = new Timeline(new KeyFrame(
                     Duration.millis(5000),
@@ -36,11 +37,11 @@ public class TeleporterEnemy extends GameEntity implements Animatable, Interacta
         }
     }
 
-    public void teleport(){
-        if (!Globals.isGameOver){
+    public void teleport() {
+        if (!Globals.isGameOver) {
             Random rnd = new Random();
-            setX(rnd.nextDouble()* Globals.WINDOW_WIDTH);
-            setY(rnd.nextDouble()* Globals.WINDOW_HEIGHT);
+            setX(rnd.nextDouble() * Globals.WINDOW_WIDTH);
+            setY(rnd.nextDouble() * Globals.WINDOW_HEIGHT);
             setImage(Globals.teleportedEnemy);
             Timeline timeline = new Timeline(new KeyFrame(
                     Duration.millis(5000),
@@ -48,6 +49,7 @@ public class TeleporterEnemy extends GameEntity implements Animatable, Interacta
             timeline.play();
         }
     }
+
     @Override
     public void apply(SnakeHead player) {
         player.changeHealth(-damage);

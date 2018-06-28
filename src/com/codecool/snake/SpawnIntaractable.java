@@ -1,4 +1,5 @@
 package com.codecool.snake;
+
 import java.util.concurrent.ThreadLocalRandom;
 
 import com.codecool.snake.Globals;
@@ -20,7 +21,7 @@ public class SpawnIntaractable {
 
     int random;
 
-    public void spawnLoop(Pane thisGame){
+    public void spawnLoop(Pane thisGame) {
         Timeline timeline = new Timeline(new KeyFrame(
                 Duration.millis(1000),
                 ae -> this.spawn(thisGame)));
@@ -28,27 +29,27 @@ public class SpawnIntaractable {
         timeline.play();
     }
 
-    private void spawn(Pane game){
+    private void spawn(Pane game) {
         if (Globals.isGameOver) {
             return;
         }
-        random = ThreadLocalRandom.current().nextInt(1,61);
-        if (random<=10){
+        random = ThreadLocalRandom.current().nextInt(1, 61);
+        if (random <= 10) {
             new MovingEnemy(game);
-        }else if(9 <random && random <= 15){
+        } else if (9 < random && random <= 15) {
             new FollowerEnemy(game);
-        }else if(15 < random && random <= 20){
+        } else if (15 < random && random <= 20) {
             new TeleporterEnemy(game);
-        }else if(20 < random && random <= 22) {
+        } else if (20 < random && random <= 22) {
             new TeleporterEnemy(game);
             new TeleporterEnemy(game);
-        }else if(22 < random && random <= 30) {
+        } else if (22 < random && random <= 30) {
             new ScoreUp(game);
-        }else if(30 < random && random <= 35) {
+        } else if (30 < random && random <= 35) {
             new HealthPowerup(game);
-        }else if(35 < random && random <= 45) {
+        } else if (35 < random && random <= 45) {
             new GrowingPowerup(game);
-        }else if(45 < random && random <= 50) {
+        } else if (45 < random && random <= 50) {
             new SpeedPowerup(game);
         }
     }
