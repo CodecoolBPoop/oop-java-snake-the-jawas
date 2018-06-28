@@ -27,8 +27,8 @@ public class GameLoop extends AnimationTimer {
     }
 
     void updateSingleEntities() {
-        GameText.updateHealthScoreDisplay(Globals.healthText1, "Player1 Health: ", Globals.snakeHealth1);
-        GameText.updateHealthScoreDisplay(Globals.healthText2, "Player2 Health: ", Globals.snakeHealth2);
+        GameText.updateHealthScoreDisplay(Globals.healthText1, "Player 1 health: ", Globals.snakeHealth1);
+        GameText.updateHealthScoreDisplay(Globals.healthText2, "Player 2 health: ", Globals.snakeHealth2);
         GameText.updateScoreDisplay(Globals.scoreText1, "Player1 Score: ", Globals.score1);
         GameText.updateScoreDisplay(Globals.scoreText2, "Player2 Score: ", Globals.score2);
 

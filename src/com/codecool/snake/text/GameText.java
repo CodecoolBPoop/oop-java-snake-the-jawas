@@ -50,7 +50,7 @@ public class GameText extends GameEntity {
 
     public static void updateHealthScoreDisplay(Text healthText, String healthString, int score) {
         healthText.setText(healthString + String.valueOf(score));
-        updateColorOfText();
+        updateColorOfText(healthText, score);
     }
 
     public static void updateScoreDisplay(Text scoreText, String scoreString, int score) {
@@ -58,19 +58,19 @@ public class GameText extends GameEntity {
     }
 
 
-    public static void updateColorOfText() {
-        if (Globals.snakeHealth1 >= 90) {
-            Globals.healthText1.setFill(Color.GREEN);
-        } else if (90 > Globals.snakeHealth1 && Globals.snakeHealth1 >= 70) {
-            Globals.healthText1.setFill(Color.LIGHTGREEN);
-        } else if (70 > Globals.snakeHealth1 && Globals.snakeHealth1 >= 50) {
-            Globals.healthText1.setFill(Color.ORANGE);
-        } else if (50 > Globals.snakeHealth1 && Globals.snakeHealth1 >= 30) {
-            Globals.healthText1.setFill(Color.ORANGERED);
-        } else if (30 > Globals.snakeHealth1 && Globals.snakeHealth1 >= 10) {
-            Globals.healthText1.setFill(Color.DARKRED);
-        } else if (10 > Globals.snakeHealth1 && Globals.snakeHealth1 >= 0) {
-            Globals.healthText1.setFill(Color.BLACK);
+    public static void updateColorOfText(Text snakeText, int snakeHealth) {
+        if (snakeHealth >= 90) {
+            snakeText.setFill(Color.GREEN);
+        } else if (snakeHealth >= 70) {
+            snakeText.setFill(Color.LIGHTGREEN);
+        } else if (snakeHealth >= 50) {
+            snakeText.setFill(Color.ORANGE);
+        } else if (snakeHealth >= 30) {
+            snakeText.setFill(Color.ORANGERED);
+        } else if (snakeHealth >= 10) {
+            snakeText.setFill(Color.DARKRED);
+        } else {
+            snakeText.setFill(Color.BLACK);
         }
     }
 
