@@ -13,8 +13,10 @@ import javafx.event.ActionEvent;
 public class Game extends Pane {
 
     public Game() {
+      
         createButton("1 Player", 550, 350, gameMode, this);
         createButton("2 Player", 700, 350, gameMode, this);
+
         Globals.spawnIntaractable.spawnLoop(this);
     }
 
@@ -104,7 +106,8 @@ public class Game extends Pane {
     }
 
     private EventHandler<ActionEvent> gameMode = e -> {
-        if (e.getTarget().toString().contains("1 Player")) {
+
+        if (e.getTarget().toString().contains("1 Player")) {         
             Globals.multiPlayer = false;
         } else {
             Globals.multiPlayer = true;
