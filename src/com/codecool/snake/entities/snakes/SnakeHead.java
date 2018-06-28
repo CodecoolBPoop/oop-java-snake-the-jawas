@@ -22,12 +22,14 @@ public class SnakeHead extends GameEntity implements Animatable {
         setY(yc);
         switch (id){
             case 1:
+                setImage(Globals.snakeHead);
                 Globals.snakeHealth1 = 100;
                 Globals.score1 = 0;
                 Globals.speed1 = 3;
                 Globals.turnRate1 = 2;
                 break;
             case 2:
+                setImage(Globals.snakeHead2);
                 Globals.snakeHealth2 = 100;
                 Globals.score2 = 0;
                 Globals.speed2 = 3;
@@ -36,7 +38,6 @@ public class SnakeHead extends GameEntity implements Animatable {
             default:break;
         }
         tail = this;
-        setImage(Globals.snakeHead);
         pane.getChildren().add(this);
         snakeID = id;
         Globals.players.add(this);
