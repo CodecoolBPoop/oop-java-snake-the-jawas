@@ -19,10 +19,9 @@ public class Utils {
         double yDiff = (snakeY - enemyY);
         double hypotenuse = Math.sqrt(Math.pow(yDiff, 2) + Math.pow(xDiff, 2));
 
-        Point2D heading;
         double xVectorLength = length * xDiff / hypotenuse;
         double yVectorLength = length * yDiff / hypotenuse;
-        heading = new Point2D(xVectorLength, yVectorLength);
+        Point2D heading = new Point2D(xVectorLength, yVectorLength);
 
         return heading;
     }
