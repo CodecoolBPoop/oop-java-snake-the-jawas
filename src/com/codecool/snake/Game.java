@@ -1,59 +1,33 @@
 package com.codecool.snake;
 
-import com.codecool.snake.entities.enemies.HealthDamage;
-import com.codecool.snake.entities.powerups.HealthPowerup;
-import com.codecool.snake.entities.powerups.SimplePowerup;
 import com.codecool.snake.entities.snakes.SnakeHead;
-import com.codecool.snake.entities.text.GameText;
-import javafx.animation.*;
+import com.codecool.snake.text.GameText;
+import com.codecool.snake.sound.Sound;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.input.KeyCode;
 import javafx.scene.layout.Pane;
-import javafx.util.Duration;
+import javafx.event.EventHandler;
+import javafx.event.ActionEvent;
 
 public class Game extends Pane {
 
     public Game() {
-        new SnakeHead(this, 500, 500,1);
-        new SnakeHead(this, 400, 500,2);
-
-        addUnTimedHealthDamage(10);
-        addTimedHealthDamage(1000);
-        addUnTimedExtraHealth(4);
-        addTimedHealthPowerUp(15000);
-
-        new GameText(this);
+        createButton("Player1",100,100, gameMode, this);
+        createButton("Player2",150,100, gameMode, this);
+        Globals.spawnIntaractable.spawnLoop(this);
     }
+    private void makeObjects(){
+        new SnakeHead(this, 500, 500, 1);
+        new GameText(this, 1);
 
-    // TODO: how to pass the creation of a new object as a return value?????
-    public void addTimedHealthPowerUp(int duration) {
-        Timeline timeline = new Timeline(
-                new KeyFrame(Duration.millis(duration),
-                        ae -> new HealthPowerup(this))
-        );
-        timeline.setCycleCount(Animation.INDEFINITE);
-        timeline.play();
-    }
-
-    public void addTimedHealthDamage(int duration) {
-        Timeline timeline = new Timeline(
-                new KeyFrame(Duration.millis(duration),
-                        ae -> new HealthDamage(this))
-        );
-        timeline.setCycleCount(Animation.INDEFINITE);
-        timeline.play();
-    }
-
-    public void addUnTimedHealthDamage(int numberOfObjects){
-        for (int i = 0; i < numberOfObjects; i++) {
-            new HealthDamage(this);
+        if(Globals.multiPlayer) {
+            new SnakeHead(this, 400, 500, 2);
+            new GameText(this, 2);
         }
+
     }
 
-    public void addUnTimedExtraHealth(int numberOfObjects){
-        for (int i = 0; i < numberOfObjects; i++) {
-            new HealthPowerup(this);
-        }
-    }
 
     public void start() {
         Scene scene = getScene();
@@ -73,8 +47,46 @@ public class Game extends Pane {
                 case A:  Globals.aKeyDown  = false; break;
                 case D: Globals.dKeyDown  = false; break;
             }
+            if (event.getCode() == KeyCode.R) {
+                Globals.gameLoop.stop();
+                Globals.gameObjects.clear();
+                Globals.players.clear();
+                this.getChildren().clear();
+                makeObjects();
+                Globals.isGameOver = false;
+                Sound.stopMusic();
+                start();
+            }
         });
+
+        Sound.startMusicWithDelay("resources/sound/off_Limits.wav", 400);
         Globals.gameLoop = new GameLoop();
         Globals.gameLoop.start();
+
     }
+
+    public void createButton(String name, int x, int y, EventHandler<ActionEvent> event, Pane pane) {
+        Button btn = new Button(name) ;
+        btn.setLayoutX(x);
+        btn.setLayoutY(y);
+        btn.setOnAction(event);
+        pane.getChildren().add(btn);
+
+    }
+
+    private EventHandler<ActionEvent> gameMode = e -> {
+       if(e.getTarget().toString().contains("Player1")){
+           Globals.multiPlayer = false;
+       } else {
+           Globals.multiPlayer = true;
+       }
+
+       this.getChildren().clear();
+
+
+       Globals.isGameOver = false;
+        makeObjects();
+
+    };
+
 }
