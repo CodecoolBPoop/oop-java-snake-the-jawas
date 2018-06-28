@@ -95,7 +95,7 @@ public class SnakeHead extends GameEntity implements Animatable {
 
                         head.destroy();
                         this.destroy();
-                        System.out.println("Game Over");
+                        System.out.println("Game Over1");
                         GameText.displayGameOver(this.snakeID, true);
                         Globals.gameLoop.stop();
                         Globals.isGameOver = true;
@@ -107,10 +107,10 @@ public class SnakeHead extends GameEntity implements Animatable {
                 if (entity instanceof SnakeBody) {
                     SnakeBody body = (SnakeBody) entity;
 
-                    if (body.getHead() != this || !body.ShouldIDestroyMyself()) {
+                    if (body.getHead() != this || body.ShouldIDestroyMyself()) {
                         removeBody();
                         this.destroy();
-                        System.out.println("Game Over");
+                        System.out.println("Game Over2");
                         GameText.displayGameOver(this.snakeID, false);
                         Globals.gameLoop.stop();
                         Globals.isGameOver = true;
@@ -121,8 +121,8 @@ public class SnakeHead extends GameEntity implements Animatable {
         }
 
         // check for game over condition
-        if (isOutOfBounds() || Globals.snakeHealth1 <=0 || Globals.snakeHealth2 <= 0) {
-            System.out.println("Game Over");
+        if (isOutOfBounds() || Globals.snakeHealth1 <=0 || (Globals.snakeHealth2 <= 0 && Globals.multiPlayer) ) {
+            System.out.println("Game Over3");
             GameText.displayGameOver(this.snakeID, false); // Extra Game over line added
             Globals.gameLoop.stop();
             Globals.isGameOver = true;
