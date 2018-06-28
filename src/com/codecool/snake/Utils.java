@@ -20,9 +20,9 @@ public class Utils {
         double hypotenuse = Math.sqrt(Math.pow(yDiff, 2) + Math.pow(xDiff, 2));
 
         Point2D heading;
-        double xIncreaseUnit = xDiff / hypotenuse;
-        double yIncreaseUnit = yDiff / hypotenuse;
-        heading = new Point2D(length * xIncreaseUnit, length * yIncreaseUnit);
+        double xVectorLength = length * xDiff / hypotenuse;
+        double yVectorLength = length * yDiff / hypotenuse;
+        heading = new Point2D(xVectorLength, yVectorLength);
 
         return heading;
     }
