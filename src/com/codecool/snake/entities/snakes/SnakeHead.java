@@ -24,13 +24,13 @@ public class SnakeHead extends GameEntity implements Animatable {
             case 1:
                 Globals.snakeHealth1 = 100;
                 Globals.score1 = 0;
-                Globals.speed1 = 2;
+                Globals.speed1 = 3;
                 Globals.turnRate1 = 2;
                 break;
             case 2:
                 Globals.snakeHealth2 = 100;
                 Globals.score2 = 0;
-                Globals.speed2 = 2;
+                Globals.speed2 = 3;
                 Globals.turnRate2 = 2;
                 break;
             default:break;
