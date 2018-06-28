@@ -22,7 +22,7 @@ public class Game extends Pane {
     }
 
     private void makeObjects() {
-        new SnakeHead(this, 500, 500, 1);
+        new SnakeHead(this, 750, 500, 1);
         new GameText(this, 1);
 
         if (Globals.multiPlayer) {
