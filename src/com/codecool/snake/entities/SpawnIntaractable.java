@@ -32,7 +32,7 @@ public class SpawnIntaractable {
             return;
         }
         random = ThreadLocalRandom.current().nextInt(1,10);
-        switch (random){
+        switch (1){
             case 1: new FollowerEnemy(game);break;
             case 2: new TeleporterEnemy(game);break;
             case 3: new HealthPowerup(game);break;

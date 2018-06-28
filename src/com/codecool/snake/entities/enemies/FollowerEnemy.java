@@ -33,12 +33,12 @@ public class FollowerEnemy extends GameEntity implements Animatable, Interactabl
         target = rnd.nextInt(2);
         setImage(Globals.followerEnemy);
         pane.getChildren().add(this);
-        entitySpicificConstructorSettings();
         timedRemoveEntity(10000);
     }
 
     @Override
     public void step() {
+        boolean secondSneak=false;
         double snakeXCordinat = 0;
         double snakeYCordinat = 0;
         double snake2XCordinat = 0;
@@ -47,18 +47,18 @@ public class FollowerEnemy extends GameEntity implements Animatable, Interactabl
             destroy();
         }
         for (Node node:pane.getChildren()) {
-            boolean secondSneak=false;
             if(node instanceof SnakeHead){
                 if (!secondSneak){
                 snakeXCordinat =((SnakeHead) node).getXCordinat();
                 snakeYCordinat = ((SnakeHead) node).getYCordinat();
+                secondSneak = true;
             }else {
                     snake2XCordinat = ((SnakeHead) node).getXCordinat();
                     snake2YCordinat = ((SnakeHead) node).getYCordinat();
                 }
             }
         }
-        if(target == 0) {
+        if(target == 0 || snake2XCordinat == 0 && snake2YCordinat == 0) {
             if (snakeXCordinat > getX()) {
                 setX(getX() + speed);
             } else if (snakeXCordinat < getX()) {
@@ -71,7 +71,7 @@ public class FollowerEnemy extends GameEntity implements Animatable, Interactabl
                 setY(getY() - speed);
             } else {
             }
-        }else if (snake2XCordinat > 0)
+        }else if (target > 0){
         if (snake2XCordinat > getX()) {
             setX(getX() + speed);
         } else if (snake2XCordinat < getX()) {
@@ -83,6 +83,9 @@ public class FollowerEnemy extends GameEntity implements Animatable, Interactabl
         } else if (snake2YCordinat < getY()) {
             setY(getY() - speed);
         } else {
+            }
+        }else{
+            System.out.println("targeterror");
         }
     }
 
