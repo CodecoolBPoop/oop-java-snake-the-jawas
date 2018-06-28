@@ -17,6 +17,7 @@ public class SnakeBody extends GameEntity implements Animatable {
     private Queue<Vec2d> history = new LinkedList<>();
     private static final int historySize = 10;
     private GameEntity head;
+    private boolean shouldDestroyMyself = false;
 
     public SnakeBody(Pane pane, GameEntity parent, SnakeHead head) {
         super(pane);
@@ -32,6 +33,7 @@ public class SnakeBody extends GameEntity implements Animatable {
         List<Node> children = pane.getChildren();
         children.add(children.indexOf(parent), this);
 
+        if (children.size()<11){this.shouldDestroyMyself = true;}
         double xc = parent.getX();
         double yc = parent.getY();
         setX(xc);
@@ -46,6 +48,10 @@ public class SnakeBody extends GameEntity implements Animatable {
         setX(pos.x);
         setY(pos.y);
         history.add(new Vec2d(parent.getX(), parent.getY())); // add the parent's current position to the beginning of the history
+    }
+
+    public boolean ShouldIDestroyMyself() {
+        return shouldDestroyMyself;
     }
 
     public GameEntity getHead() {
