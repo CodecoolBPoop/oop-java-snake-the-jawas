@@ -5,7 +5,7 @@ import com.codecool.snake.Globals;
 import com.codecool.snake.entities.Animatable;
 import com.codecool.snake.Utils;
 import com.codecool.snake.entities.Interactable;
-import com.codecool.snake.entities.text.GameText;
+import com.codecool.snake.text.GameText;
 import com.codecool.snake.sound.Sound;
 import javafx.geometry.Point2D;
 import javafx.scene.layout.Pane;

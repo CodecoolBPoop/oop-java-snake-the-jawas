@@ -14,12 +14,12 @@ import java.util.Random;
 // a simple enemy TODO make better ones.
 public class FollowerEnemy extends GameEntity implements Animatable, Interactable {
 
-    int speed;
+    float speed;
     Random rnd = new Random();
     int target = 0;
-
-
-    private Point2D heading;
+    static int spawnNumber = 0;
+    static int buffLimit = 10;
+    static float buff = (float) 0.2;
     private static final int damage = 10;
 
     public FollowerEnemy(Pane pane) {
@@ -29,7 +29,12 @@ public class FollowerEnemy extends GameEntity implements Animatable, Interactabl
         //TODO calculate angel
 
     public void entitySpicificConstructorSettings() {
-        speed = 1;
+        spawnNumber++;
+        if (spawnNumber == buffLimit){
+            System.out.println("follower Buffed");
+            buffLimit = buffLimit +10;
+        }
+        speed = 2 + buff;
         canSpawn();
         target = rnd.nextInt(2);
         setImage(Globals.followerEnemy);

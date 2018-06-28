@@ -1,7 +1,6 @@
 package com.codecool.snake;
 
 import com.codecool.snake.entities.GameEntity;
-import com.codecool.snake.entities.SpawnIntaractable;
 import com.codecool.snake.entities.snakes.SnakeHead;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.image.Image;
