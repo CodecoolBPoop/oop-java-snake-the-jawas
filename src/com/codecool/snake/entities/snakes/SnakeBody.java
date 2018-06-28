@@ -18,10 +18,14 @@ public class SnakeBody extends GameEntity implements Animatable {
     private static final int historySize = 10;
     private GameEntity head;
 
-    public SnakeBody(Pane pane, GameEntity parent, GameEntity head) {
+    public SnakeBody(Pane pane, GameEntity parent, SnakeHead head) {
         super(pane);
         this.parent = parent;
-        setImage(Globals.snakeBody);
+        if (head.getSnakeID() == 1){
+            setImage(Globals.snakeBody);
+        }else {
+            setImage(Globals.snakeBody2);
+        }
         this.head = head;
 
         // place it visually below the current tail
