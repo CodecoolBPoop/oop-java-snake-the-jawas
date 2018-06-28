@@ -1,4 +1,4 @@
-package com.codecool.snake.entities.text;
+package com.codecool.snake.text;
 
 import com.codecool.snake.Globals;
 import com.codecool.snake.entities.GameEntity;

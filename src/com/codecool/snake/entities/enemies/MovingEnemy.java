@@ -15,10 +15,12 @@ import java.util.Random;
 
 
 public class MovingEnemy extends GameEntity implements Animatable, Interactable {
-    int speed;
-
+    float speed;
     private Point2D heading;
     private static final int damage = 10;
+    static int spawnNumber = 0;
+    static int buffLimit = 10;
+    static float buff = (float) 0.2;
 
     public MovingEnemy(Pane pane) {
         super(pane);
@@ -26,7 +28,12 @@ public class MovingEnemy extends GameEntity implements Animatable, Interactable 
     }
 
     public void entitySpicificConstructorSettings(){
-        speed = 2;
+        spawnNumber++;
+        if (spawnNumber == buffLimit){
+            System.out.println("moving Buffed");
+            buffLimit = buffLimit +10;
+        }
+        speed = 2 + buff;
         setImage(Globals.movingEnemy);
         canSpawn();
         pane.getChildren().add(this);

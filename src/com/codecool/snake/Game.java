@@ -1,14 +1,11 @@
 package com.codecool.snake;
 
-import com.codecool.snake.entities.SpawnIntaractable;
 import com.codecool.snake.entities.snakes.SnakeHead;
-import com.codecool.snake.entities.text.GameText;
+import com.codecool.snake.text.GameText;
 import com.codecool.snake.sound.Sound;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.Pane;
-
-import javax.sound.sampled.Clip;
 
 public class Game extends Pane {
 
