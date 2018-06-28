@@ -5,12 +5,6 @@ import com.codecool.snake.Globals;
 import com.codecool.snake.entities.Animatable;
 import com.codecool.snake.Utils;
 import com.codecool.snake.entities.Interactable;
-import com.codecool.snake.entities.enemies.FollowerEnemy;
-import com.codecool.snake.entities.enemies.MovingEnemy;
-import com.codecool.snake.entities.enemies.TeleporterEnemy;
-import com.codecool.snake.entities.powerups.ScoreUp;
-import com.codecool.snake.entities.powerups.SimplePowerup;
-import com.codecool.snake.entities.powerups.SpeedPowerup;
 import com.codecool.snake.entities.text.GameText;
 import com.codecool.snake.sound.Sound;
 import javafx.geometry.Point2D;
@@ -18,8 +12,6 @@ import javafx.scene.layout.Pane;
 
 public class SnakeHead extends GameEntity implements Animatable {
 
-//    private static float speed = 2;
-//    private static float turnRate = 2;
     private GameEntity tail; // the last element. Needed to know where to add the next part.
     //    private int health;
     private int snakeID;
@@ -32,13 +24,13 @@ public class SnakeHead extends GameEntity implements Animatable {
             case 1:
                 Globals.snakeHealth1 = 100;
                 Globals.score1 = 0;
-                Globals.speed1 = 2;
+                Globals.speed1 = 3;
                 Globals.turnRate1 = 2;
                 break;
             case 2:
                 Globals.snakeHealth2 = 100;
                 Globals.score2 = 0;
-                Globals.speed2 = 2;
+                Globals.speed2 = 3;
                 Globals.turnRate2 = 2;
                 break;
             default:break;

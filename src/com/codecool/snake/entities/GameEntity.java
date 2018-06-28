@@ -2,6 +2,7 @@ package com.codecool.snake.entities;
 
 import com.codecool.snake.Game;
 import com.codecool.snake.Globals;
+import com.codecool.snake.entities.snakes.SnakeHead;
 import com.codecool.snake.entities.powerups.SpeedPowerup;
 import com.codecool.snake.sound.Sound;
 import javafx.animation.KeyFrame;
@@ -27,9 +28,7 @@ public abstract class GameEntity extends ImageView {
     public void stillEntityConstructor(Image gameObjectImage){
         setImage(gameObjectImage);
         pane.getChildren().add(this);
-        Random rnd = new Random();
-        setX(rnd.nextDouble() * Globals.WINDOW_WIDTH);
-        setY(rnd.nextDouble() * Globals.WINDOW_HEIGHT);
+        canSpawn();
     }
 
     public void destroy() {
@@ -54,6 +53,27 @@ public abstract class GameEntity extends ImageView {
                 Duration.millis(after),
                 ae -> destroy()));
         timeline.play();
+    }
+    public void canSpawn() {
+        Random rnd = new Random();
+        while (true) {
+            double x = rnd.nextDouble() * Globals.WINDOW_WIDTH;
+            double y = rnd.nextDouble() * Globals.WINDOW_HEIGHT;
+            boolean canSpawn = true;
+            for (SnakeHead head : Globals.players) {
+                if (head.getX() + 50 < x || head.getX() - 50 > x) {
+
+                } else if (head.getY() + 50 < y || head.getY() - 50 > y) {
+                }else {
+                    canSpawn = false;
+                }
+            }
+            if (canSpawn) {
+                setX(x);
+                setY(y);
+                break;
+            }
+        }
     }
 
 }
