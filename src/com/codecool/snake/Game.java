@@ -13,15 +13,16 @@ import javafx.event.ActionEvent;
 public class Game extends Pane {
 
     public Game() {
-        createButton("Player1",100,100, gameMode, this);
-        createButton("Player2",150,100, gameMode, this);
+        createButton("1 Player", 550, 350, gameMode, this);
+        createButton("2 Player", 700, 350, gameMode, this);
         Globals.spawnIntaractable.spawnLoop(this);
     }
-    private void makeObjects(){
+
+    private void makeObjects() {
         new SnakeHead(this, 500, 500, 1);
         new GameText(this, 1);
 
-        if(Globals.multiPlayer) {
+        if (Globals.multiPlayer) {
             new SnakeHead(this, 400, 500, 2);
             new GameText(this, 2);
         }
@@ -33,19 +34,35 @@ public class Game extends Pane {
         Scene scene = getScene();
         scene.setOnKeyPressed(event -> {
             switch (event.getCode()) {
-                case LEFT:  Globals.leftKeyDown  = true; break;
-                case RIGHT: Globals.rightKeyDown  = true; break;
-                case A:  Globals.aKeyDown  = true; break;
-                case D: Globals.dKeyDown  = true; break;
+                case LEFT:
+                    Globals.leftKeyDown = true;
+                    break;
+                case RIGHT:
+                    Globals.rightKeyDown = true;
+                    break;
+                case A:
+                    Globals.aKeyDown = true;
+                    break;
+                case D:
+                    Globals.dKeyDown = true;
+                    break;
             }
         });
 
         scene.setOnKeyReleased(event -> {
             switch (event.getCode()) {
-                case LEFT:  Globals.leftKeyDown  = false; break;
-                case RIGHT: Globals.rightKeyDown  = false; break;
-                case A:  Globals.aKeyDown  = false; break;
-                case D: Globals.dKeyDown  = false; break;
+                case LEFT:
+                    Globals.leftKeyDown = false;
+                    break;
+                case RIGHT:
+                    Globals.rightKeyDown = false;
+                    break;
+                case A:
+                    Globals.aKeyDown = false;
+                    break;
+                case D:
+                    Globals.dKeyDown = false;
+                    break;
             }
             if (event.getCode() == KeyCode.R) {
                 Globals.gameLoop.stop();
@@ -66,25 +83,34 @@ public class Game extends Pane {
     }
 
     public void createButton(String name, int x, int y, EventHandler<ActionEvent> event, Pane pane) {
-        Button btn = new Button(name) ;
+        Button btn = new Button(name);
         btn.setLayoutX(x);
         btn.setLayoutY(y);
+        btn.setStyle("-fx-background-color: \n" +
+                "        linear-gradient(#ffd65b, #e68400),\n" +
+                "        linear-gradient(#ffef84, #f2ba44),\n" +
+                "        linear-gradient(#ffea6a, #efaa22),\n" +
+                "        linear-gradient(#ffe657 0%, #f8c202 50%, #eea10b 100%),\n" +
+                "        linear-gradient(from 0% 0% to 15% 50%, rgba(255,255,255,0.9), rgba(255,255,255,0));\n" +
+                "    -fx-background-radius: 30;\n" +
+                "    -fx-background-insets: 0,1,2,3,0;\n" +
+                "    -fx-text-fill: #654b00;\n" +
+                "    -fx-font-weight: bold;\n" +
+                "    -fx-font-size: 14px;\n" +
+                "    -fx-padding: 10 20 10 20;");
         btn.setOnAction(event);
         pane.getChildren().add(btn);
 
     }
 
     private EventHandler<ActionEvent> gameMode = e -> {
-       if(e.getTarget().toString().contains("Player1")){
-           Globals.multiPlayer = false;
-       } else {
-           Globals.multiPlayer = true;
-       }
-
-       this.getChildren().clear();
-
-
-       Globals.isGameOver = false;
+        if (e.getTarget().toString().contains("1 Player")) {
+            Globals.multiPlayer = false;
+        } else {
+            Globals.multiPlayer = true;
+        }
+        this.getChildren().clear();
+        Globals.isGameOver = false;
         makeObjects();
 
     };
