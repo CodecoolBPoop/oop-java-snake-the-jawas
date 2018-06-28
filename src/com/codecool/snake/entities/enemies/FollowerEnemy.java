@@ -6,7 +6,6 @@ import com.codecool.snake.entities.Animatable;
 import com.codecool.snake.entities.Interactable;
 import com.codecool.snake.entities.snakes.SnakeHead;
 import com.codecool.snake.sound.Sound;
-import javafx.geometry.Point2D;
 import javafx.scene.Node;
 import javafx.scene.layout.Pane;
 import java.util.Random;
@@ -55,12 +54,12 @@ public class FollowerEnemy extends GameEntity implements Animatable, Interactabl
         for (Node node:pane.getChildren()) {
             if(node instanceof SnakeHead){
                 if (!secondSneak){
-                snakeXCordinat =((SnakeHead) node).getXCordinat();
-                snakeYCordinat = ((SnakeHead) node).getYCordinat();
+                snakeXCordinat =((SnakeHead) node).getXCoordinate();
+                snakeYCordinat = ((SnakeHead) node).getYCoordinate();
                 secondSneak = true;
             }else {
-                    snake2XCordinat = ((SnakeHead) node).getXCordinat();
-                    snake2YCordinat = ((SnakeHead) node).getYCordinat();
+                    snake2XCordinat = ((SnakeHead) node).getXCoordinate();
+                    snake2YCordinat = ((SnakeHead) node).getYCoordinate();
                 }
             }
         }
