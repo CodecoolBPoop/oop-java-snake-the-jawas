@@ -15,7 +15,6 @@ public class Game extends Pane {
     public Game() {
         makeObjects();
         Globals.spawnIntaractable.spawnLoop(this);
-        Sound.startMusic("resources/sound/off_Limits.wav");
     }
     private void makeObjects(){
         new SnakeHead(this, 500, 500, 1);
@@ -50,11 +49,12 @@ public class Game extends Pane {
                 this.getChildren().clear();
                 makeObjects();
                 Globals.isGameOver = false;
+                Sound.stopMusic();
                 start();
             }
         });
 
-
+        Sound.startMusicWithDelay("resources/sound/off_Limits.wav", 400);
         Globals.gameLoop = new GameLoop();
         Globals.gameLoop.start();
 

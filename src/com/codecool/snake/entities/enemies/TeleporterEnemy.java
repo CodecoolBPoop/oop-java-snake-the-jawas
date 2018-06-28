@@ -6,6 +6,7 @@ import com.codecool.snake.entities.Animatable;
 import com.codecool.snake.entities.GameEntity;
 import com.codecool.snake.entities.Interactable;
 import com.codecool.snake.entities.snakes.SnakeHead;
+import com.codecool.snake.sound.Sound;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.geometry.Point2D;
@@ -51,10 +52,12 @@ public class TeleporterEnemy extends GameEntity implements Animatable, Interacta
     public void apply(SnakeHead player) {
         player.changeHealth(-damage);
         destroy();
+        Sound.playSound("resources/sound/scream_female.wav");
     }
 
     @Override
     public String getMessage() {
         return "10 damage";
     }
+
 }

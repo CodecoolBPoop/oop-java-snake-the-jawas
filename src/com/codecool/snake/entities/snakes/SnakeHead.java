@@ -8,6 +8,9 @@ import com.codecool.snake.entities.Interactable;
 import com.codecool.snake.entities.enemies.FollowerEnemy;
 import com.codecool.snake.entities.enemies.MovingEnemy;
 import com.codecool.snake.entities.enemies.TeleporterEnemy;
+import com.codecool.snake.entities.powerups.ScoreUp;
+import com.codecool.snake.entities.powerups.SimplePowerup;
+import com.codecool.snake.entities.powerups.SpeedPowerup;
 import com.codecool.snake.entities.text.GameText;
 import com.codecool.snake.sound.Sound;
 import javafx.geometry.Point2D;
@@ -81,9 +84,6 @@ public class SnakeHead extends GameEntity implements Animatable {
         }
         // set rotation and position
         setRotate(dir);
-//        Point2D heading = Utils.directionToVector(dir, speed);
-//        setX(getX() + heading.getX());
-//        setY(getY() + heading.getY());
 
         // check if collided with an enemy or a powerup
         for (GameEntity entity : Globals.getGameObjects()) {
@@ -93,11 +93,6 @@ public class SnakeHead extends GameEntity implements Animatable {
                     interactable.apply(this);
                     System.out.println(interactable.getMessage());
                 }
-
-                if (entity instanceof FollowerEnemy || entity instanceof MovingEnemy || entity instanceof TeleporterEnemy) {
-                    Sound.playSound("resources/sound/scream_female.wav");
-                }
-
 
                 if (entity instanceof SnakeHead) {
                     SnakeHead head = (SnakeHead) entity;
@@ -111,6 +106,7 @@ public class SnakeHead extends GameEntity implements Animatable {
                         GameText.displayGameOver(this.snakeID, true);
                         Globals.gameLoop.stop();
                         Globals.isGameOver = true;
+                        Sound.startEndingMusic("resources/sound/PowerBotsLoop.wav");
                     }
                 }
 
@@ -125,9 +121,7 @@ public class SnakeHead extends GameEntity implements Animatable {
                         GameText.displayGameOver(this.snakeID, false);
                         Globals.gameLoop.stop();
                         Globals.isGameOver = true;
-                        Sound.stopMusic();
-                        Sound.startMusic("resources/sound/PowerBotsLoop.wav");
-
+                        Sound.startEndingMusic("resources/sound/PowerBotsLoop.wav");
                     }
                 }
             }
@@ -139,8 +133,7 @@ public class SnakeHead extends GameEntity implements Animatable {
             GameText.displayGameOver(this.snakeID, false); // Extra Game over line added
             Globals.gameLoop.stop();
             Globals.isGameOver = true;
-            Sound.stopMusic();
-            Sound.startMusic("resources/sound/PowerBotsLoop.wav");
+            Sound.startEndingMusic("resources/sound/PowerBotsLoop.wav");
         }
     }
 

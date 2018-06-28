@@ -4,16 +4,8 @@ import com.codecool.snake.entities.GameEntity;
 import com.codecool.snake.Globals;
 import com.codecool.snake.entities.Interactable;
 import com.codecool.snake.entities.snakes.SnakeHead;
-import javafx.animation.Animation;
-import javafx.animation.KeyFrame;
-import javafx.animation.Timeline;
-import javafx.scene.image.Image;
+import com.codecool.snake.sound.Sound;
 import javafx.scene.layout.Pane;
-import javafx.util.Duration;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
 
 public class ScoreUp extends GameEntity implements Interactable {
 
@@ -30,10 +22,12 @@ public class ScoreUp extends GameEntity implements Interactable {
     public void apply(SnakeHead snakeHead) {
         snakeHead.changeScore(scoreUp);
         destroy();
+        Sound.playSound("resources/sound/coin_drop.wav");
     }
 
     @Override
     public String getMessage() {
         return "Got power-up :)";
     }
+
 }

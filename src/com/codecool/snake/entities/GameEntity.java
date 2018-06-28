@@ -2,6 +2,8 @@ package com.codecool.snake.entities;
 
 import com.codecool.snake.Game;
 import com.codecool.snake.Globals;
+import com.codecool.snake.entities.powerups.SpeedPowerup;
+import com.codecool.snake.sound.Sound;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.scene.image.Image;

@@ -4,6 +4,7 @@ import com.codecool.snake.entities.GameEntity;
 import com.codecool.snake.Globals;
 import com.codecool.snake.entities.Interactable;
 import com.codecool.snake.entities.snakes.SnakeHead;
+import com.codecool.snake.sound.Sound;
 import javafx.scene.image.Image;
 import javafx.scene.layout.Pane;
 
@@ -21,20 +22,11 @@ public class HealthPowerup extends GameEntity implements Interactable {
         timedRemoveEntity(5000);
     }
 
-    // TODO: MOVE THIS TO GAME ENTITY, AND INSERT IMAGE PARAMETER INTO ENTITY SUBCLASS'S CONSTRUCTORS
-    public void thisGoesIntoGameEntityConstructor(Image gameObjectImage){
-        setImage(gameObjectImage);
-        pane.getChildren().add(this);
-
-        Random rnd = new Random();
-        setX(rnd.nextDouble() * Globals.WINDOW_WIDTH);
-        setY(rnd.nextDouble() * Globals.WINDOW_HEIGHT);
-    }
-
     @Override
     public void apply(SnakeHead player) {
         player.changeHealth(extraHealth);
         destroy();
+        Sound.playSound("resources/sound/deep_breath.wav");
     }
 
     @Override
