@@ -3,21 +3,24 @@ package com.codecool.snake;
 import com.codecool.snake.entities.SpawnIntaractable;
 import com.codecool.snake.entities.snakes.SnakeHead;
 import com.codecool.snake.entities.text.GameText;
+import com.codecool.snake.sound.Sound;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.Pane;
+
+import javax.sound.sampled.Clip;
 
 public class Game extends Pane {
 
     public Game() {
         makeObjects();
-//        SpawnIntaractable spawnIntaractable = new SpawnIntaractable();
         Globals.spawnIntaractable.spawnLoop(this);
     }
     private void makeObjects(){
-        new SnakeHead(this, 500, 500);
-        new SnakeHead(this, 400, 500);
-        new GameText(this);
+        new SnakeHead(this, 500, 500, 1);
+        new SnakeHead(this, 400, 500, 2);
+        new GameText(this, 1);
+        new GameText(this, 2);
     }
 
 
@@ -46,11 +49,12 @@ public class Game extends Pane {
                 this.getChildren().clear();
                 makeObjects();
                 Globals.isGameOver = false;
+                Sound.stopMusic();
                 start();
             }
         });
 
-
+        Sound.startMusicWithDelay("resources/sound/off_Limits.wav", 400);
         Globals.gameLoop = new GameLoop();
         Globals.gameLoop.start();
 

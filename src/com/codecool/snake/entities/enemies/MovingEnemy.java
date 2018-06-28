@@ -6,6 +6,7 @@ import com.codecool.snake.entities.Animatable;
 import com.codecool.snake.Utils;
 import com.codecool.snake.entities.Interactable;
 import com.codecool.snake.entities.snakes.SnakeHead;
+import com.codecool.snake.sound.Sound;
 import javafx.geometry.Point2D;
 import javafx.scene.image.Image;
 import javafx.scene.layout.Pane;
@@ -49,10 +50,12 @@ public class MovingEnemy extends GameEntity implements Animatable, Interactable 
     public void apply(SnakeHead player) {
         player.changeHealth(-damage);
         destroy();
+        Sound.playSound("resources/sound/scream_female.wav");
     }
 
     @Override
     public String getMessage() {
         return "10 damage";
     }
+
 }

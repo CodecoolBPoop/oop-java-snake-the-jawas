@@ -27,19 +27,27 @@ public class Globals {
     public static Image teleportedEnemy = new Image("teleported_enemy.png");
     public static Image powerupScore = new Image("powerup_score.png");
     public static Image movingEnemy = new Image("moving_enemy.png");
-
-
-    //.. put here the other images you want to use
     public static Image powerupHealth = new Image("powerup_health.png");
+    public static Image powerupSpeed = new Image("powerup_speed.png");
 
     public static Text gameOver = new Text();
     public static boolean isGameOver = false;
 
-    public static int snakeHealth;
-    public static Text healthText = new Text();
+    public static int snakeHealth1;
+    public static int snakeHealth2;
+    public static float speed1;
+    public static float turnRate1;
+    public static float speed2;
+    public static float turnRate2;
 
-    public static int score;
-    public static Text scoreText = new Text();
+
+    public static Text healthText1 = new Text();
+    public static Text healthText2 = new Text();
+
+    public static int score1;
+    public static int score2;
+    public static Text scoreText1 = new Text();
+    public static Text scoreText2 = new Text();
 
     public static boolean leftKeyDown;
     public static boolean rightKeyDown;

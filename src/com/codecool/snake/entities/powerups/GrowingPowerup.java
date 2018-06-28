@@ -4,6 +4,7 @@ import com.codecool.snake.entities.GameEntity;
 import com.codecool.snake.Globals;
 import com.codecool.snake.entities.Interactable;
 import com.codecool.snake.entities.snakes.SnakeHead;
+import com.codecool.snake.sound.Sound;
 import javafx.scene.image.Image;
 import javafx.scene.layout.Pane;
 
@@ -22,10 +23,12 @@ public class GrowingPowerup extends GameEntity implements Interactable {
     public void apply(SnakeHead snakeHead) {
         snakeHead.addPart(4);
         destroy();
+        Sound.playSound("resources/sound/eating_munch.wav");
     }
 
     @Override
     public String getMessage() {
         return "Got power-up :)";
     }
+
 }
