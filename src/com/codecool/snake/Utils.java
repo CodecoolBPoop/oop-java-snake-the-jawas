@@ -17,7 +17,7 @@ public class Utils {
     public static Point2D getDirectionVectorToFollowSnake(double snakeX, double snakeY, double enemyX, double enemyY, double length) {
         double xDiff = (snakeX - enemyX);
         double yDiff = (snakeY - enemyY);
-        double hypotenuse = Math.sqrt(Math.pow((snakeY - enemyY), 2) + Math.pow((snakeX - enemyX), 2));
+        double hypotenuse = Math.sqrt(Math.pow(yDiff, 2) + Math.pow(xDiff, 2));
 
         Point2D heading;
         double xIncreaseUnit = xDiff / hypotenuse;
