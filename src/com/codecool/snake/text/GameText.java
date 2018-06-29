@@ -16,13 +16,13 @@ public class GameText extends GameEntity {
         switch (id) {
             case 1:
                 setText(pane, "Player1 Health: ", Globals.snakeHealth1, Globals.healthText1, 0.8, 0.05, Color.GREEN, 20);
-                setText(pane, "Player1 Score: ", Globals.score1, Globals.scoreText1, 0.8, 0.08, Color.ORANGERED, 20);
+                setText(pane, "Player1 Score: ", Globals.score1, Globals.scoreText1, 0.8, 0.08, Color.RED, 20);
                 Globals.gameOver.setText("");
                 pane.getChildren().add(Globals.gameOver);
                 break;
             case 2:
                 setText(pane, "Player2 Health: ", Globals.snakeHealth2, Globals.healthText2, 0.01, 0.05, Color.GREEN, 20);
-                setText(pane, "Player2 Score: ", Globals.score2, Globals.scoreText2, 0.01, 0.08, Color.ORANGERED, 20);
+                setText(pane, "Player2 Score: ", Globals.score2, Globals.scoreText2, 0.01, 0.08, Color.BLUE, 20);
                 break;
             default:break;
         }
@@ -38,9 +38,19 @@ public class GameText extends GameEntity {
         pane.getChildren().add(textToSet);
     }
 
+    public static void setStartText(Pane pane, String title, double xCoordinate, double yCoordinate, Color textColor, int fontSize) {
+        Text textToSet = new Text();
+        textToSet.setText(title);
+        textToSet.setFont(Font.font ("Verdana", FontWeight.EXTRA_BOLD, fontSize));
+        textToSet.setFill(textColor);
+        textToSet.setX(xCoordinate * Globals.WINDOW_WIDTH);
+        textToSet.setY(yCoordinate * Globals.WINDOW_HEIGHT);
+        pane.getChildren().add(textToSet);
+    }
+
     public static void updateHealthScoreDisplay(Text healthText, String healthString, int score) {
         healthText.setText(healthString + String.valueOf(score));
-        updateColorOfText();
+        updateColorOfText(healthText, score);
     }
 
     public static void updateScoreDisplay(Text scoreText, String scoreString, int score) {
@@ -48,19 +58,19 @@ public class GameText extends GameEntity {
     }
 
 
-    public static void updateColorOfText() {
-        if (Globals.snakeHealth1 >= 90) {
-            Globals.healthText1.setFill(Color.GREEN);
-        } else if (90 > Globals.snakeHealth1 && Globals.snakeHealth1 >= 70) {
-            Globals.healthText1.setFill(Color.LIGHTGREEN);
-        } else if (70 > Globals.snakeHealth1 && Globals.snakeHealth1 >= 50) {
-            Globals.healthText1.setFill(Color.ORANGE);
-        } else if (50 > Globals.snakeHealth1 && Globals.snakeHealth1 >= 30) {
-            Globals.healthText1.setFill(Color.ORANGERED);
-        } else if (30 > Globals.snakeHealth1 && Globals.snakeHealth1 >= 10) {
-            Globals.healthText1.setFill(Color.DARKRED);
-        } else if (10 > Globals.snakeHealth1 && Globals.snakeHealth1 >= 0) {
-            Globals.healthText1.setFill(Color.BLACK);
+    public static void updateColorOfText(Text snakeText, int snakeHealth) {
+        if (snakeHealth >= 90) {
+            snakeText.setFill(Color.GREEN);
+        } else if (snakeHealth >= 70) {
+            snakeText.setFill(Color.LIGHTGREEN);
+        } else if (snakeHealth >= 50) {
+            snakeText.setFill(Color.ORANGE);
+        } else if (snakeHealth >= 30) {
+            snakeText.setFill(Color.ORANGERED);
+        } else if (snakeHealth >= 10) {
+            snakeText.setFill(Color.DARKRED);
+        } else {
+            snakeText.setFill(Color.BLACK);
         }
     }
 
@@ -70,16 +80,16 @@ public class GameText extends GameEntity {
         String fullMessage;
 
         if(!Globals.multiPlayer) {
-            fullMessage = String.format("Game over\n your score is %d points", Globals.score1);
+            fullMessage = String.format("Game over\nYour score is %d points", Globals.score1);
         }
         else if (snakeID == 1) {
             score = Globals.score2;
             winner = "Player 2";
-            fullMessage = String.format("Game over\n%s won\nWinner\'s score is %d points", winner, score);
+            fullMessage = String.format("Game over\n%s won\nScore: %d points", winner, score);
         } else if (snakeID == 2) {
             score = Globals.score1;
             winner = "Player 1";
-            fullMessage = String.format("Game over\n%s won\nWinner\'s score is %d points", winner, score);
+            fullMessage = String.format("Game over\n%s won\nScore: %d points", winner, score);
         } else {
             score = 100000000;
             winner = "1000000000";
@@ -89,13 +99,14 @@ public class GameText extends GameEntity {
             if (Globals.score1 > Globals.score2) {
                 winner = "Player 1";
                 score = Globals.score1;
-                fullMessage = String.format("Game over\n%s won with higher score\nWinner\'s score is %d points", winner, score);
+                fullMessage = String.format("Game over\n%s won with higher score\nScore: %d points", winner, score);
             } else if (Globals.score1 < Globals.score2) {
                 winner = "Player 2";
                 score = Globals.score2;
-                fullMessage = String.format("Game over\n%s won with higher score\nWinner\'s score is %d points", winner, score);
+                fullMessage = String.format("Game over\n%s won with higher score: %d points", winner, score);
             } else {
-                fullMessage = String.format("Game over\nIt's a draw\nBoth players\'s score is %d points");
+                score = Globals.score2;
+                fullMessage = String.format("Game over\nIt's a draw\nBoth players\'s score is %d points", score);
             }
         }
         String gameOverMessage = String.format(fullMessage);

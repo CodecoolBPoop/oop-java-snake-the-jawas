@@ -9,19 +9,20 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.layout.Pane;
 import javafx.event.EventHandler;
 import javafx.event.ActionEvent;
+import javafx.scene.paint.Color;
 
 public class Game extends Pane {
 
     public Game() {
-      
-        createButton("1 Player", 550, 350, gameMode, this);
-        createButton("2 Player", 700, 350, gameMode, this);
+        GameText.setStartText(this, "Snake Game", 0.335, 0.2, Color.BLACK, 50);
+        createButton("Single player", Globals.WINDOW_WIDTH * 0.4, Globals.WINDOW_HEIGHT * 0.3, gameMode, this);
+        createButton("Two players", Globals.WINDOW_WIDTH * 0.4, Globals.WINDOW_HEIGHT * 0.4, gameMode, this);
 
         Globals.spawnIntaractable.spawnLoop(this);
     }
 
     private void makeObjects() {
-        new SnakeHead(this, 500, 500, 1);
+        new SnakeHead(this, 750, 500, 1);
         new GameText(this, 1);
 
         if (Globals.multiPlayer) {
@@ -84,10 +85,11 @@ public class Game extends Pane {
 
     }
 
-    public void createButton(String name, int x, int y, EventHandler<ActionEvent> event, Pane pane) {
+    public void createButton(String name, double x, double y, EventHandler<ActionEvent> event, Pane pane) {
         Button btn = new Button(name);
         btn.setLayoutX(x);
         btn.setLayoutY(y);
+        btn.setMinSize(200, 50);
         btn.setStyle("-fx-background-color: \n" +
                 "        linear-gradient(#ffd65b, #e68400),\n" +
                 "        linear-gradient(#ffef84, #f2ba44),\n" +
@@ -107,7 +109,7 @@ public class Game extends Pane {
 
     private EventHandler<ActionEvent> gameMode = e -> {
 
-        if (e.getTarget().toString().contains("1 Player")) {         
+        if (e.getTarget().toString().contains("Single player")) {
             Globals.multiPlayer = false;
         } else {
             Globals.multiPlayer = true;
