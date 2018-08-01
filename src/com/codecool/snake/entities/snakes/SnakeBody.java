@@ -16,16 +16,26 @@ public class SnakeBody extends GameEntity implements Animatable {
     private GameEntity parent;
     private Queue<Vec2d> history = new LinkedList<>();
     private static final int historySize = 10;
+    private GameEntity head;
+    private boolean shouldDestroyMyself = true;
 
-    public SnakeBody(Pane pane, GameEntity parent) {
+    public SnakeBody(Pane pane, GameEntity parent, SnakeHead head) {
         super(pane);
         this.parent = parent;
-        setImage(Globals.snakeBody);
+        if (head.getSnakeID() == 1) {
+            setImage(Globals.snakeBody);
+        } else {
+            setImage(Globals.snakeBody2);
+        }
+        this.head = head;
 
         // place it visually below the current tail
         List<Node> children = pane.getChildren();
         children.add(children.indexOf(parent), this);
 
+        if (children.size() < 14) {
+            this.shouldDestroyMyself = false;
+        }//If you die at the start increment the condition, msg Kristof on Discord if you don't understand this
         double xc = parent.getX();
         double yc = parent.getY();
         setX(xc);
@@ -42,4 +52,11 @@ public class SnakeBody extends GameEntity implements Animatable {
         history.add(new Vec2d(parent.getX(), parent.getY())); // add the parent's current position to the beginning of the history
     }
 
+    public boolean ShouldIDestroyMyself() {
+        return shouldDestroyMyself;
+    }
+
+    public GameEntity getHead() {
+        return head;
+    }
 }
