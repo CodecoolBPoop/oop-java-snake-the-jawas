@@ -26,4 +26,21 @@ public class Utils {
         return heading;
     }
 
+    public static Point2D getDirectionVectorToGoAround(double fixX, double fixY, double enemyStartX, double enemyStartY, double length) {
+        double xDiff = (fixX - enemyStartX);
+        double yDiff = (fixY - enemyStartY);
+        double hypotenuse = Math.sqrt(Math.pow(yDiff, 2) + Math.pow(xDiff, 2));
+
+        double xUnitVector = xDiff / hypotenuse;
+        double yUnitVector = yDiff / hypotenuse;
+
+        double xPerpendicular = -length * yUnitVector;
+        double yPerpendicular = length * xUnitVector;
+
+        Point2D heading = new Point2D(xPerpendicular, yPerpendicular);
+
+        return heading;
+    }
+
+
 }
