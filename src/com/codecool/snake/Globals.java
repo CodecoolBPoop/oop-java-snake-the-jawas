@@ -41,6 +41,8 @@ public class Globals {
     public static float speed2;
     public static float turnRate2;
 
+    // TODO: THERE SHOULD BE ONLY ONE HEALTHTEXT AND SCORETEXT CREATED IN THE SNAKEHEAD CONSTRUCTOR SO THAT
+    // TODO: ANY NUMBER OF SNAKES CAN BE CREATED WITHOUT DUPLICATING ITS TEXT DISPLAY FUNCTIONS
 
     public static Text healthText1 = new Text();
     public static Text healthText2 = new Text();

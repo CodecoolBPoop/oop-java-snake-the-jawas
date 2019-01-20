@@ -24,14 +24,15 @@ public class GameText extends GameEntity {
                 setText(pane, "Player2 Health: ", Globals.snakeHealth2, Globals.healthText2, 0.01, 0.05, Color.GREEN, 20);
                 setText(pane, "Player2 Score: ", Globals.score2, Globals.scoreText2, 0.01, 0.08, Color.BLUE, 20);
                 break;
-            default:break;
+            default:
+                break;
         }
 
     }
 
     public static void setText(Pane pane, String title, int scoreValue, Text textToSet, double xCoordinate, double yCoordinate, Color textColor, int fontSize) {
         textToSet.setText(title + String.valueOf(scoreValue));
-        textToSet.setFont(Font.font ("Verdana", FontWeight.EXTRA_BOLD, fontSize));
+        textToSet.setFont(Font.font("Verdana", FontWeight.EXTRA_BOLD, fontSize));
         textToSet.setFill(textColor);
         textToSet.setX(xCoordinate * Globals.WINDOW_WIDTH);
         textToSet.setY(yCoordinate * Globals.WINDOW_HEIGHT);
@@ -41,7 +42,7 @@ public class GameText extends GameEntity {
     public static void setStartText(Pane pane, String title, double xCoordinate, double yCoordinate, Color textColor, int fontSize) {
         Text textToSet = new Text();
         textToSet.setText(title);
-        textToSet.setFont(Font.font ("Verdana", FontWeight.EXTRA_BOLD, fontSize));
+        textToSet.setFont(Font.font("Verdana", FontWeight.EXTRA_BOLD, fontSize));
         textToSet.setFill(textColor);
         textToSet.setX(xCoordinate * Globals.WINDOW_WIDTH);
         textToSet.setY(yCoordinate * Globals.WINDOW_HEIGHT);
@@ -79,10 +80,9 @@ public class GameText extends GameEntity {
         String winner;
         String fullMessage;
 
-        if(!Globals.multiPlayer) {
+        if (!Globals.multiPlayer) {
             fullMessage = String.format("Game over\nYour score is %d points", Globals.score1);
-        }
-        else if (snakeID == 1) {
+        } else if (snakeID == 1) {
             score = Globals.score2;
             winner = "Player 2";
             fullMessage = String.format("Game over\n%s won\nScore: %d points", winner, score);
@@ -111,7 +111,7 @@ public class GameText extends GameEntity {
         }
         String gameOverMessage = String.format(fullMessage);
         Globals.gameOver.setText(gameOverMessage);
-        Globals.gameOver.setFont(Font.font ("Verdana", FontWeight.EXTRA_BOLD, 30));
+        Globals.gameOver.setFont(Font.font("Verdana", FontWeight.EXTRA_BOLD, 30));
         Globals.gameOver.setFill(Color.INDIANRED);
         Globals.gameOver.setX(0.2 * Globals.WINDOW_WIDTH);
         Globals.gameOver.setY(0.5 * Globals.WINDOW_HEIGHT);
