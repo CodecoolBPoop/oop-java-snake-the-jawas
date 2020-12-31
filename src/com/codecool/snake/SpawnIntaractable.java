@@ -33,7 +33,7 @@ public class SpawnIntaractable {
         if (Globals.isGameOver) {
             return;
         }
-        random = 11; // ThreadLocalRandom.current().nextInt(1, 61);
+        random = ThreadLocalRandom.current().nextInt(1, 61);
         if (random <= 10) {
             new MovingEnemy(game);
         } else if (10 < random && random <= 15) {
