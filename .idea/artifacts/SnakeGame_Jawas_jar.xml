@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" build-on-make="true" name="SnakeGame_Jawas:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/SnakeGame_Jawas_jar</output-path>
+    <root id="archive" name="3TW-snake.jar">
+      <element id="module-output" name="3TW-snake" />
+    </root>
+  </artifact>
+</component>
